@@ -1,0 +1,76 @@
+.cta {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding-block: clamp(80px, 10vw, 150px) calc(var(--road-h) + 60px);
+  background: var(--graphite);
+  color: var(--offwhite);
+  overflow: hidden;
+  text-align: center;
+}
+
+.cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(80% 100% at 20% 0%, rgba(232, 106, 0, 0.09), transparent 62%);
+  pointer-events: none;
+}
+
+.cta__crane {
+  position: absolute;
+  right: -3%;
+  top: 0;
+  width: clamp(300px, 42vw, 620px);
+  height: auto;
+  color: rgba(247, 244, 237, 0.11);
+  pointer-events: none;
+}
+
+.cta__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+
+.cta__title {
+  color: var(--offwhite);
+}
+
+.cta__text {
+  font-size: clamp(1rem, 1.4vw, 1.16rem);
+  color: var(--text-light-muted);
+}
+
+.cta__btn {
+  margin-top: 14px;
+}
+
+@media (max-width: 767px) {
+  .cta {
+    padding-block: clamp(64px, 14vw, 90px) calc(var(--road-h) + 36px);
+  }
+
+  .cta__crane {
+    right: -26%;
+    top: -4%;
+    width: 108vw;
+    opacity: 0.55;
+  }
+
+  .cta__inner {
+    gap: 16px;
+  }
+
+  .cta__text {
+    font-size: 0.98rem;
+  }
+
+  .cta__btn {
+    width: 100%;
+    margin-top: 8px;
+  }
+}

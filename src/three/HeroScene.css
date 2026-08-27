@@ -1,0 +1,60 @@
+.hero-scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  /* Keeps the left third clear so the headline never sits on structure. */
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.32) 0%, rgba(0, 0, 0, 0.6) 28%, #000 58%);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.32) 0%,
+    rgba(0, 0, 0, 0.6) 28%,
+    #000 58%
+  );
+}
+
+.hero-scene canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* No-WebGL fallback: a quiet industrial gradient with a drafting grid. */
+.hero-scene--fallback {
+  background:
+    radial-gradient(120% 80% at 78% 30%, rgba(184, 138, 68, 0.16), transparent 60%),
+    radial-gradient(90% 70% at 92% 70%, rgba(232, 106, 0, 0.14), transparent 62%),
+    linear-gradient(160deg, #16191b 0%, #111315 100%);
+}
+
+.hero-scene--fallback::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(247, 244, 237, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(247, 244, 237, 0.03) 1px, transparent 1px);
+  background-size: 68px 68px;
+  mask-image: linear-gradient(to left, #000, transparent 62%);
+  -webkit-mask-image: linear-gradient(to left, #000, transparent 62%);
+}
+
+@media (max-width: 767px) {
+  .hero-scene {
+    mask-image: linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0.5) 46%, rgba(0, 0, 0, 0.15) 70%);
+    -webkit-mask-image: linear-gradient(
+      to top,
+      #000 0%,
+      rgba(0, 0, 0, 0.5) 46%,
+      rgba(0, 0, 0, 0.15) 70%
+    );
+  }
+}
+
+/* react-three-fiber sets pointer-events on its own wrapper and canvas,
+   which would otherwise make everything under this overlay unclickable.
+   Nothing in these scenes is interactive, so the whole tree opts out. */
+.hero-scene,
+.hero-scene > *,
+.hero-scene canvas {
+  pointer-events: none !important;
+}

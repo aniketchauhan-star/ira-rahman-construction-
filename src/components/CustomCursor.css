@@ -1,0 +1,93 @@
+.has-custom-cursor,
+.has-custom-cursor a,
+.has-custom-cursor button,
+.has-custom-cursor [data-cursor] {
+  cursor: none;
+}
+
+/* Keep real cursors on form controls — typing without one is awful. */
+.has-custom-cursor input,
+.has-custom-cursor textarea,
+.has-custom-cursor select {
+  cursor: auto;
+}
+
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9500;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 220ms var(--ease-out);
+  will-change: transform;
+}
+
+.cursor-dot.is-visible,
+.cursor-ring.is-visible {
+  opacity: 1;
+}
+
+.cursor-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--orange);
+}
+
+.cursor-ring {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(184, 138, 68, 0.85);
+  border-radius: 50%;
+  background: transparent;
+  transition: width 320ms var(--ease-out), height 320ms var(--ease-out),
+    background-color 320ms var(--ease-out), border-color 320ms var(--ease-out),
+    opacity 220ms var(--ease-out);
+}
+
+.cursor-ring__label {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #fff;
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out);
+}
+
+.cursor-ring[data-mode='hover'] {
+  width: 48px;
+  height: 48px;
+  border-color: rgba(232, 106, 0, 0.9);
+  background: rgba(232, 106, 0, 0.1);
+}
+
+.cursor-ring[data-mode='view'] {
+  width: 78px;
+  height: 78px;
+  border-color: transparent;
+  background: var(--orange);
+}
+
+.cursor-ring[data-mode='view'] .cursor-ring__label {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.cursor-ring.is-down {
+  transform-origin: center;
+  border-color: var(--orange);
+}
+
+@media (hover: none), (pointer: coarse) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+}

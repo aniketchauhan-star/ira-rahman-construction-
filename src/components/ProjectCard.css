@@ -1,0 +1,279 @@
+.proj {
+  position: relative;
+}
+
+.proj__btn {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  background: var(--surface-dark-2);
+  border-radius: 2px;
+  text-align: left;
+  isolation: isolate;
+}
+
+.proj__media {
+  position: absolute;
+  inset: 0;
+}
+
+.proj__media .smart-image__img {
+  transition: transform 720ms var(--ease-out);
+}
+
+.proj__btn:hover .smart-image__img,
+.proj__btn:focus-visible .smart-image__img {
+  transform: scale(1.04);
+}
+
+/* Graphite wash so the type always stays readable. */
+.proj__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(17, 19, 21, 0.9) 0%,
+    rgba(17, 19, 21, 0.42) 38%,
+    rgba(17, 19, 21, 0.06) 72%
+  );
+  opacity: 0.85;
+  transition: opacity var(--t-ui-slow) var(--ease-out);
+}
+
+.proj__btn:hover .proj__overlay,
+.proj__btn:focus-visible .proj__overlay {
+  opacity: 1;
+}
+
+/* Orange line enters from the left along the bottom edge. */
+.proj__line {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--orange);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 560ms var(--ease-out);
+  z-index: 3;
+}
+
+.proj__btn:hover .proj__line,
+.proj__btn:focus-visible .proj__line {
+  transform: scaleX(1);
+}
+
+.proj__meta {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: clamp(20px, 2.4vw, 34px);
+  color: var(--offwhite);
+  transform: translateY(24px);
+  transition: transform var(--t-ui-slow) var(--ease-out);
+}
+
+.proj__btn:hover .proj__meta,
+.proj__btn:focus-visible .proj__meta {
+  transform: translateY(0);
+}
+
+.proj__cat {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--bronze-soft);
+}
+
+.proj__title {
+  color: var(--offwhite);
+}
+
+.proj__loc {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  color: var(--text-light-muted);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity var(--t-ui-slow) var(--ease-out), transform var(--t-ui-slow) var(--ease-out);
+}
+
+.proj__btn:hover .proj__loc,
+.proj__btn:focus-visible .proj__loc {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.proj__arrow {
+  position: absolute;
+  top: clamp(18px, 2vw, 28px);
+  right: clamp(18px, 2vw, 28px);
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  color: var(--offwhite);
+  background: rgba(17, 19, 21, 0.5);
+  border: 1px solid rgba(247, 244, 237, 0.24);
+  border-radius: 2px;
+  opacity: 0;
+  transform: translate(-6px, 6px);
+  transition: all var(--t-ui-slow) var(--ease-out);
+}
+
+.proj__btn:hover .proj__arrow,
+.proj__btn:focus-visible .proj__arrow {
+  opacity: 1;
+  transform: translate(0, 0);
+  background: var(--orange);
+  border-color: var(--orange);
+  color: #fff;
+}
+
+.proj__index {
+  position: absolute;
+  top: clamp(18px, 2vw, 28px);
+  left: clamp(20px, 2.4vw, 34px);
+  z-index: 3;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  color: rgba(247, 244, 237, 0.6);
+}
+
+/* ==========================================================================
+   MOBILE
+   Overlaid captions rely on hover to stay out of the picture. On touch
+   there is no hover, so the caption moves out of the image entirely
+   into its own graphite band beneath it — nothing sits on the work.
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  .proj__btn {
+    display: grid;
+    grid-template-rows: auto auto;
+    background: var(--graphite);
+  }
+
+  .proj__media {
+    position: relative;
+    inset: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  /* A light wash only — the type is no longer on top of the photograph. */
+  .proj__overlay {
+    inset: 0 0 auto 0;
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(to top, rgba(17, 19, 21, 0.4), transparent 55%);
+    opacity: 1;
+  }
+
+  .proj__meta {
+    position: relative;
+    inset: auto;
+    gap: 4px;
+    padding: 13px 14px 15px;
+    transform: none;
+  }
+
+  .proj__cat {
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    line-height: 1.3;
+  }
+
+  .proj__title {
+    font-size: 1.02rem;
+    line-height: 1.08;
+  }
+
+  .proj__loc {
+    opacity: 1;
+    transform: none;
+    font-size: 0.74rem;
+  }
+
+  .proj__index {
+    top: 10px;
+    left: 12px;
+    font-size: 0.72rem;
+  }
+
+  /* Persistent tap affordance instead of a hover-in arrow. */
+  .proj__arrow {
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    opacity: 1;
+    transform: none;
+    background: rgba(17, 19, 21, 0.6);
+  }
+
+  .proj__arrow svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .proj__line {
+    top: 0;
+    bottom: auto;
+    height: 2px;
+    transform: scaleX(0);
+  }
+
+  .proj__btn:active .proj__line {
+    transform: scaleX(1);
+  }
+
+  .proj__btn:active .proj__arrow {
+    background: var(--orange);
+    border-color: var(--orange);
+  }
+
+  /* The placeholder is smaller in a two-up grid, and shifted clear of
+     the index and the tap arrow in the top corners. */
+  .proj .smart-image__ph {
+    padding-top: 34px;
+    gap: 3px;
+  }
+
+  .proj .smart-image__ph-kind {
+    font-size: 0.74rem;
+    letter-spacing: 0.16em;
+  }
+
+  .proj .smart-image__ph-kind::after {
+    margin-block: 7px 3px;
+  }
+
+  .proj .smart-image__ph-hint {
+    font-size: 0.58rem;
+  }
+
+  .proj .smart-image__ph-path {
+    font-size: 0.68rem;
+  }
+}
+
+/* The full-width closing tile can afford a wider crop. */
+@media (max-width: 640px) {
+  .projects__grid .proj:last-child .proj__media,
+  .projects__grid .proj:last-child .proj__overlay {
+    aspect-ratio: 16 / 10;
+  }
+}

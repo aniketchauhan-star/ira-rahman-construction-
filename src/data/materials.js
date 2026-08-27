@@ -1,0 +1,43 @@
+/**
+ * MATERIALS
+ * Images are optional — add close-ups to /public/assets/materials/
+ * (e.g. material-stone.jpg) and reference them below.
+ */
+
+export const materials = [
+  {
+    id: 'stone',
+    title: 'Stone',
+    description: 'Hard, graded stone for foundations, retaining works and base layers.',
+    image: '/assets/materials/material-stone.jpg',
+    tone: '#6d6a66',
+  },
+  {
+    id: 'gravel',
+    title: 'Gravel',
+    description: 'Clean gravel for sub-base, drainage beds and site access roads.',
+    image: '/assets/materials/material-gravel.jpg',
+    tone: '#8a8177',
+  },
+  {
+    id: 'aggregate',
+    title: 'Aggregate',
+    description: 'Consistently sized aggregate for structural concrete and road works.',
+    image: '/assets/materials/material-aggregate.jpg',
+    tone: '#5f5c59',
+  },
+  {
+    id: 'sand',
+    title: 'Sand',
+    description: 'Washed, screened sand for plaster, masonry and concrete mixes.',
+    image: '/assets/materials/material-sand.jpg',
+    tone: '#b88a44',
+  },
+  {
+    id: 'concrete',
+    title: 'Concrete Materials',
+    description: 'Cement and mix components handled to maintain strength on site.',
+    image: '/assets/materials/material-concrete.jpg',
+    tone: '#777a7c',
+  },
+]

@@ -1,0 +1,101 @@
+.gate {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: clamp(340px, 52vh, 520px);
+  padding: clamp(60px, 8vw, 110px) 0 calc(var(--road-h) * 0.7 + 40px);
+  background: var(--dark);
+  color: var(--offwhite);
+  overflow: hidden;
+}
+
+/* Drafting grid so the empty space still reads as a site plan. */
+.gate::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(247, 244, 237, 0.032) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(247, 244, 237, 0.032) 1px, transparent 1px);
+  background-size: 74px 74px;
+  mask-image: radial-gradient(circle at 50% 46%, #000 6%, transparent 68%);
+  -webkit-mask-image: radial-gradient(circle at 50% 46%, #000 6%, transparent 68%);
+}
+
+/* ---------- Barrier leaves ---------- */
+.gate__leaf {
+  position: absolute;
+  top: 50%;
+  width: 52%;
+  height: clamp(52px, 7vw, 78px);
+  margin-top: clamp(-39px, -3.5vw, -26px);
+  background: var(--offwhite);
+  border-block: 2px solid rgba(32, 34, 36, 0.24);
+  z-index: 2;
+  will-change: transform;
+}
+
+.gate__leaf--l {
+  left: 0;
+}
+
+.gate__leaf--r {
+  right: 0;
+}
+
+.gate__hazard {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--orange) 0 26px,
+    var(--offwhite) 26px 52px
+  );
+  opacity: 0.94;
+}
+
+/* ---------- Copy ---------- */
+.gate__inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.gate__title {
+  display: flex;
+  flex-direction: column;
+  color: var(--offwhite);
+}
+
+.gate__line {
+  display: block;
+}
+
+.gate__rule {
+  display: block;
+  width: min(180px, 40vw);
+  height: 2px;
+  margin: 30px auto 0;
+  background: var(--orange);
+  transform: scaleX(0);
+}
+
+@media (max-width: 767px) {
+  .gate {
+    min-height: 0;
+    padding: clamp(72px, 18vw, 100px) 0 calc(var(--road-h) * 0.6 + 60px);
+  }
+
+  .gate__leaf {
+    width: 60%;
+    height: 46px;
+    margin-top: -23px;
+  }
+
+  .gate__hazard {
+    background: repeating-linear-gradient(-45deg, var(--orange) 0 18px, var(--offwhite) 18px 36px);
+  }
+
+  .gate__rule {
+    margin-top: 22px;
+  }
+}

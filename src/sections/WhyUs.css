@@ -1,0 +1,119 @@
+.why {
+  background: var(--surface-light-2);
+}
+
+.why__title {
+  margin-bottom: clamp(40px, 5vw, 70px);
+}
+
+.why__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.why__row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: clamp(18px, 3vw, 48px);
+  padding-block: clamp(26px, 3.2vw, 46px);
+}
+
+/* The structural line drawn across each row. */
+.why__draw {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--orange) 0 14%, rgba(32, 34, 36, 0.18) 14%);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.why__row:last-child::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(32, 34, 36, 0.14);
+}
+
+.why__num {
+  font-size: 0.86rem;
+  letter-spacing: 0.2em;
+  color: var(--bronze);
+}
+
+.why__word {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: clamp(2.3rem, 5.6vw, 4.6rem);
+  line-height: 0.92;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--graphite);
+  transition: color var(--t-ui-slow) var(--ease-out);
+}
+
+.why__row:hover .why__word {
+  color: var(--orange);
+}
+
+.why__text {
+  font-size: 0.96rem;
+  line-height: 1.66;
+  color: var(--text-muted);
+  max-width: 42ch;
+}
+
+@media (max-width: 900px) {
+  .why__row {
+    grid-template-columns: 54px 1fr;
+    align-items: start;
+    gap: 12px 18px;
+  }
+
+  .why__text {
+    grid-column: 2;
+  }
+}
+
+/* ==========================================================================
+   MOBILE
+   The keyword stays the hero of each row, but the number moves onto
+   the same baseline as a reference mark so nothing is orphaned in a
+   narrow left rail.
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  .why__title {
+    margin-bottom: 26px;
+  }
+
+  .why__row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding-block: 22px;
+  }
+
+  .why__num {
+    font-size: 0.74rem;
+  }
+
+  .why__word {
+    font-size: clamp(2rem, 10vw, 2.8rem);
+  }
+
+  .why__text {
+    max-width: none;
+    font-size: 0.92rem;
+  }
+
+  .why__draw {
+    background: linear-gradient(90deg, var(--orange) 0 22%, rgba(32, 34, 36, 0.18) 22%);
+  }
+}

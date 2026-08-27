@@ -1,0 +1,158 @@
+/* ==========================================================================
+   THE ROAD BAND
+   A fixed strip along the bottom of the viewport carrying the 3D
+   construction journey. It never receives pointer events, and the
+   top of the canvas fades out so tall scenery (cranes, structures)
+   rises into the page as atmosphere rather than blocking content.
+   ========================================================================== */
+
+.road-band {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 600;
+  height: var(--road-band-h);
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 620ms var(--ease-out), transform 620ms var(--ease-out);
+
+  /* Ground stays solid, upper scenery dissolves into the page. */
+  mask-image: linear-gradient(
+    to top,
+    #000 0,
+    #000 42%,
+    rgba(0, 0, 0, 0.62) 66%,
+    rgba(0, 0, 0, 0.22) 84%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to top,
+    #000 0,
+    #000 42%,
+    rgba(0, 0, 0, 0.62) 66%,
+    rgba(0, 0, 0, 0.22) 84%,
+    transparent 100%
+  );
+}
+
+.road-band canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.road-band--hidden {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+/* A soft scrim under the band so the road never fights body copy. */
+.road-band::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--road-h);
+  background: linear-gradient(to top, rgba(10, 11, 12, 0.5), transparent);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   STATIC FALLBACK
+   Used when WebGL is unavailable or the visitor prefers reduced
+   motion. Same road language, drawn entirely in CSS, no animation.
+   ========================================================================== */
+
+.road-static {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 600;
+  height: var(--road-h);
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 500ms var(--ease-out);
+  overflow: hidden;
+}
+
+.road-static--hidden {
+  opacity: 0;
+}
+
+.road-static__ground {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 56%;
+  background: linear-gradient(to bottom, #24272a, var(--asphalt, #1b1e20));
+  border-top: 2px solid var(--orange);
+  box-shadow: 0 -18px 34px -18px rgba(10, 11, 12, 0.85);
+}
+
+.road-static__dashes {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 26%;
+  height: 3px;
+  background: repeating-linear-gradient(
+    to right,
+    rgba(230, 224, 210, 0.8) 0 34px,
+    transparent 34px 74px
+  );
+}
+
+/* Simplified vehicle silhouette, parked at the scroll position. */
+.road-static__vehicle {
+  position: absolute;
+  bottom: 30%;
+  left: 12%;
+  width: 92px;
+  height: 52px;
+  color: var(--orange);
+}
+
+.road-static__note {
+  position: absolute;
+  right: 18px;
+  bottom: 6px;
+  font-family: var(--font-head);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(247, 244, 237, 0.28);
+}
+
+@media (max-width: 767px) {
+  /* Shallower mask on a short band: the fade has less room to work in,
+     so it starts higher and finishes sooner. */
+  .road-band {
+    mask-image: linear-gradient(
+      to top,
+      #000 0,
+      #000 46%,
+      rgba(0, 0, 0, 0.55) 70%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to top,
+      #000 0,
+      #000 46%,
+      rgba(0, 0, 0, 0.55) 70%,
+      transparent 100%
+    );
+  }
+}
+
+/* react-three-fiber sets pointer-events on its own wrapper and canvas,
+   which would otherwise make everything under this overlay unclickable.
+   Nothing in these scenes is interactive, so the whole tree opts out. */
+.road-band,
+.road-band > *,
+.road-band canvas {
+  pointer-events: none !important;
+}

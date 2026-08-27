@@ -1,0 +1,155 @@
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 28px;
+  border-radius: 3px; /* rectangular, not pill */
+  border: 1px solid transparent;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 0.94rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform var(--t-ui) var(--ease-out),
+    background-color var(--t-ui) var(--ease-out), border-color var(--t-ui) var(--ease-out),
+    color var(--t-ui) var(--ease-out), box-shadow var(--t-ui) var(--ease-out);
+}
+
+.btn__label,
+.btn__arrow {
+  position: relative;
+  z-index: 2;
+}
+
+.btn__arrow {
+  transition: transform var(--t-ui) var(--ease-out);
+}
+
+.btn:hover .btn__arrow {
+  transform: translateX(5px);
+}
+
+.btn:hover .btn__arrow--diag {
+  transform: translate(4px, -4px);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+}
+
+/* ---------- Sizes ---------- */
+.btn--sm {
+  padding: 11px 20px;
+  font-size: 0.82rem;
+}
+
+.btn--lg {
+  padding: 21px 40px;
+  font-size: clamp(0.98rem, 1.3vw, 1.16rem);
+}
+
+/* ---------- Primary ---------- */
+.btn--primary {
+  background: var(--orange);
+  color: #fff;
+}
+
+.btn--primary:hover {
+  background: var(--orange-deep);
+}
+
+/* ---------- Secondary (light surfaces) ---------- */
+.btn--secondary {
+  background: transparent;
+  color: var(--graphite);
+  border-color: rgba(32, 34, 36, 0.32);
+}
+
+.btn--secondary:hover {
+  border-color: var(--graphite);
+  background: var(--graphite);
+  color: var(--offwhite);
+}
+
+/* ---------- Ghost (dark surfaces) ---------- */
+.btn--ghost {
+  background: transparent;
+  color: var(--offwhite);
+  border-color: rgba(247, 244, 237, 0.34);
+}
+
+.btn--ghost:hover {
+  border-color: var(--offwhite);
+  background: var(--offwhite);
+  color: var(--graphite);
+}
+
+/* ---------- Fill (orange expands from the left) ---------- */
+.btn--fill {
+  background: transparent;
+  color: var(--offwhite);
+  border-color: var(--offwhite);
+}
+
+.btn--fill .btn__sweep {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--orange);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--t-ui-slow) var(--ease-out);
+}
+
+.btn--fill:hover {
+  border-color: var(--orange);
+  color: #fff;
+}
+
+.btn--fill:hover .btn__sweep {
+  transform: scaleX(1);
+}
+
+/* ---------- Nav CTA ---------- */
+.btn--nav {
+  padding: 12px 22px;
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  background: transparent;
+  color: currentColor;
+  border-color: currentColor;
+}
+
+.btn--nav .btn__sweep {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--orange);
+  transform: scaleY(0);
+  transform-origin: bottom center;
+  transition: transform var(--t-ui) var(--ease-out);
+}
+
+.btn--nav:hover {
+  color: #fff;
+  border-color: var(--orange);
+}
+
+.btn--nav:hover .btn__sweep {
+  transform: scaleY(1);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  pointer-events: none;
+}

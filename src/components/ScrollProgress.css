@@ -1,0 +1,198 @@
+.rail {
+  position: fixed;
+  top: 50%;
+  right: clamp(12px, 1.6vw, 26px);
+  z-index: 640;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: stretch;
+  gap: 12px;
+  height: min(430px, 52vh);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* ---- The miniature road ---- */
+.rail__track {
+  position: relative;
+  width: 12px;
+  flex: 0 0 12px;
+  background: #191c1e;
+  border-top: 2px solid var(--orange);
+  border-bottom: 2px solid var(--orange);
+  border-radius: 1px;
+  box-shadow: inset 1px 0 0 rgba(247, 244, 237, 0.07),
+    inset -1px 0 0 rgba(247, 244, 237, 0.07);
+}
+
+.rail__dashes {
+  position: absolute;
+  left: 50%;
+  top: 4px;
+  bottom: 4px;
+  width: 1.5px;
+  margin-left: -0.75px;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(247, 244, 237, 0.5) 0 7px,
+    transparent 7px 15px
+  );
+}
+
+.rail__fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(184, 138, 68, 0.42), rgba(232, 106, 0, 0.34));
+  transform: scaleY(0);
+  transform-origin: top center;
+  will-change: transform;
+}
+
+.rail__marker {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 18px;
+  height: 14px;
+  display: grid;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  will-change: top;
+}
+
+.rail__marker-body {
+  width: 14px;
+  height: 10px;
+  background: var(--orange);
+  border-radius: 1px;
+  box-shadow: 0 0 0 3px rgba(232, 106, 0, 0.16);
+  position: relative;
+}
+
+/* tiny tracked-vehicle silhouette */
+.rail__marker-body::before {
+  content: '';
+  position: absolute;
+  left: 1px;
+  right: 1px;
+  bottom: -3px;
+  height: 3px;
+  background: var(--graphite);
+  border-radius: 1px;
+}
+
+.rail__marker-body::after {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: -4px;
+  width: 6px;
+  height: 4px;
+  background: var(--bronze);
+  border-radius: 1px 1px 0 0;
+}
+
+/* ---- Nodes ---- */
+.rail__nodes {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: auto;
+}
+
+.rail__node button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 5px 3px;
+}
+
+.rail__dot {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 8px;
+  background: var(--concrete);
+  opacity: 0.5;
+  transform: rotate(45deg);
+  transition: background-color var(--t-ui) var(--ease-out),
+    opacity var(--t-ui) var(--ease-out), transform var(--t-ui) var(--ease-out);
+}
+
+.rail__label {
+  position: absolute;
+  right: calc(100% + 12px);
+  padding: 5px 10px;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--offwhite);
+  background: rgba(26, 29, 31, 0.94);
+  border: 1px solid rgba(184, 138, 68, 0.4);
+  border-radius: 2px;
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity var(--t-ui) var(--ease-out), transform var(--t-ui) var(--ease-out),
+    color var(--t-ui) var(--ease-out);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.rail__node--done .rail__dot {
+  background: var(--bronze);
+  opacity: 1;
+}
+
+.rail__node--active .rail__dot {
+  background: var(--orange);
+  opacity: 1;
+  transform: rotate(45deg) scale(1.5);
+  box-shadow: 0 0 0 4px rgba(232, 106, 0, 0.14);
+}
+
+.rail__node--active .rail__label {
+  color: var(--orange);
+  border-color: rgba(232, 106, 0, 0.65);
+}
+
+.rail:hover .rail__label,
+.rail__node button:focus-visible .rail__label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.rail__node button:hover .rail__dot {
+  opacity: 1;
+  background: var(--offwhite);
+}
+
+/* On light sections the rail needs its own contrast — handled by
+   a body-level class toggled from the active section. */
+body[data-surface='light'] .rail__track {
+  background: #d9d3c7;
+  box-shadow: inset 1px 0 0 rgba(32, 34, 36, 0.08), inset -1px 0 0 rgba(32, 34, 36, 0.08);
+}
+
+body[data-surface='light'] .rail__dashes {
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(32, 34, 36, 0.42) 0 7px,
+    transparent 7px 15px
+  );
+}
+
+body[data-surface='light'] .rail__node button:hover .rail__dot {
+  background: var(--graphite);
+}
+
+/* Hidden on tablet + mobile — the road band carries progress there. */
+@media (max-width: 1023px) {
+  .rail {
+    display: none;
+  }
+}

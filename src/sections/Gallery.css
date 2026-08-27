@@ -1,0 +1,219 @@
+.gallery {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(28px, 4vw, 52px);
+  min-height: 100svh;
+  padding-block: clamp(56px, 6vw, 92px) calc(var(--road-h) + 30px);
+  background: var(--surface-light);
+  overflow: hidden;
+}
+
+.gallery__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.gallery__hint {
+  font-family: var(--font-head);
+  font-size: 0.72rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--concrete);
+  padding-bottom: 6px;
+}
+
+.gallery__viewport {
+  width: 100%;
+  overflow: hidden;
+}
+
+.gallery__track {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(16px, 2vw, 34px);
+  padding-inline: var(--gutter);
+  will-change: transform;
+}
+
+/* Varied crops so the strip never reads as a uniform carousel. */
+.shot {
+  position: relative;
+  flex: 0 0 auto;
+  margin: 0;
+}
+
+.shot__media {
+  height: 100%;
+  background: var(--surface-light-2);
+  box-shadow: var(--shadow-md);
+}
+
+/* One height budget drives every crop, so the tallest frame always
+   clears the fixed road band on short viewports. */
+.gallery__track {
+  --shot-h: min(clamp(260px, 36vw, 430px), 46svh);
+}
+
+.shot--landscape {
+  height: calc(var(--shot-h) * 0.78);
+  width: calc(var(--shot-h) * 0.78 * 1.5);
+}
+
+.shot--portrait {
+  height: var(--shot-h);
+  width: calc(var(--shot-h) * 0.7);
+}
+
+.shot--square {
+  height: calc(var(--shot-h) * 0.84);
+  width: calc(var(--shot-h) * 0.84);
+}
+
+.shot:nth-child(even) {
+  margin-top: clamp(26px, 4.5vw, 76px);
+}
+
+.shot__cap {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 14px;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.shot__num {
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  color: var(--orange);
+}
+
+/* ---------- End card ---------- */
+.gallery__end {
+  flex: 0 0 auto;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-inline: clamp(20px, 3vw, 56px);
+}
+
+.gallery__end-rule {
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: var(--bronze);
+}
+
+.gallery__end-text {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: clamp(1.1rem, 2vw, 1.7rem);
+  line-height: 1.05;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--concrete);
+}
+
+/* ---------- Native scrolling (mobile / reduced motion) ---------- */
+.gallery__viewport--native {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.gallery__viewport--native::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery__viewport--native .gallery__track {
+  transform: none !important;
+}
+
+.gallery__viewport--native .shot {
+  scroll-snap-align: center;
+}
+
+@media (max-width: 767px) {
+  .gallery {
+    min-height: 0;
+    gap: 22px;
+    padding-block: var(--section-y) calc(var(--road-h) + 26px);
+  }
+
+  /* Heading and hint stack: side by side the hint was stranded at the
+     far edge of the screen, disconnected from what it describes. */
+  .gallery__head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .gallery__hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding-bottom: 0;
+    font-size: 0.66rem;
+    letter-spacing: 0.2em;
+  }
+
+  .gallery__hint::after {
+    content: '';
+    width: 26px;
+    height: 1px;
+    background: var(--orange);
+  }
+
+  /* Room for the caption inside the scroll container, which clips
+     overflow on both axes once it scrolls on one. */
+  .gallery__viewport--native {
+    padding-bottom: 4px;
+  }
+
+  .shot:nth-child(even) {
+    margin-top: 0;
+  }
+
+  .shot--landscape,
+  .shot--portrait,
+  .shot--square {
+    width: 76vw;
+    max-width: 340px;
+    height: 58vw;
+    max-height: 260px;
+  }
+
+  .shot--portrait {
+    width: 62vw;
+    max-width: 280px;
+    height: 76vw;
+    max-height: 340px;
+  }
+
+  .shot__cap {
+    margin-top: 11px;
+    font-size: 0.78rem;
+  }
+
+  .gallery__end {
+    padding-inline: 8px 20px;
+    gap: 14px;
+  }
+
+  .gallery__end-rule {
+    width: 34px;
+  }
+
+  .gallery__end-text {
+    font-size: 1.05rem;
+  }
+}

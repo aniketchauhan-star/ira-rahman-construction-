@@ -1,0 +1,220 @@
+.svc {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: clamp(28px, 3vw, 40px);
+  background: var(--offwhite);
+  color: var(--text-dark);
+  border: 1px solid var(--line-dark);
+  border-radius: 2px;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform var(--t-ui-slow) var(--ease-out),
+    background-color var(--t-ui-slow) var(--ease-out), color var(--t-ui-slow) var(--ease-out),
+    border-color var(--t-ui-slow) var(--ease-out), box-shadow var(--t-ui-slow) var(--ease-out);
+}
+
+/* Clipped top-right corner — the architectural cut used site-wide. */
+.svc::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 22px;
+  height: 22px;
+  background: var(--surface-light-2);
+  clip-path: polygon(100% 0, 100% 100%, 0 0);
+  transition: background-color var(--t-ui-slow) var(--ease-out);
+  z-index: 2;
+}
+
+/* Orange structural line drawn down the leading edge. */
+.svc__edge {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: var(--orange);
+  transform: scaleY(0);
+  transform-origin: top center;
+  transition: transform var(--t-ui-slow) var(--ease-out);
+}
+
+.svc:hover,
+.svc:focus-visible {
+  transform: translateY(-6px);
+  background: var(--graphite);
+  color: var(--offwhite);
+  border-color: var(--graphite);
+  box-shadow: var(--shadow-lg);
+}
+
+.svc:hover::after,
+.svc:focus-visible::after {
+  background: #2b2e31;
+}
+
+.svc:hover .svc__edge,
+.svc:focus-visible .svc__edge {
+  transform: scaleY(1);
+}
+
+.svc__head {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.svc__icon {
+  color: var(--graphite);
+  transition: color var(--t-ui-slow) var(--ease-out), transform var(--t-ui-slow) var(--ease-out);
+}
+
+.svc:hover .svc__icon,
+.svc:focus-visible .svc__icon {
+  color: var(--orange);
+  transform: translateY(-3px) rotate(-4deg);
+}
+
+.svc__num {
+  font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+  line-height: 1;
+  color: rgba(32, 34, 36, 0.16);
+  transition: color var(--t-ui-slow) var(--ease-out);
+}
+
+.svc:hover .svc__num,
+.svc:focus-visible .svc__num {
+  color: rgba(184, 138, 68, 0.7);
+}
+
+.svc__title {
+  margin-top: 6px;
+}
+
+.svc__desc {
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  line-height: 1.62;
+  color: var(--text-muted);
+  transition: color var(--t-ui-slow) var(--ease-out);
+  max-width: 34ch;
+}
+
+.svc:hover .svc__desc,
+.svc:focus-visible .svc__desc {
+  color: var(--text-light-muted);
+}
+
+.svc__arrow {
+  margin-top: auto;
+  padding-top: 14px;
+  color: var(--concrete);
+  transition: color var(--t-ui) var(--ease-out), transform var(--t-ui) var(--ease-out);
+}
+
+.svc:hover .svc__arrow,
+.svc:focus-visible .svc__arrow {
+  color: var(--orange);
+  transform: translateX(6px);
+}
+
+/* ==========================================================================
+   MOBILE
+   Six full-width panels stacked vertically read as six screens of the
+   same thing. On a phone each service becomes a compact spec row —
+   icon and reference number in a left rail, name and scope beside it.
+   ========================================================================== */
+
+@media (max-width: 620px) {
+  .svc {
+    display: grid;
+    grid-template-columns: 46px 1fr;
+    grid-template-areas:
+      'icon title'
+      'icon desc';
+    column-gap: 16px;
+    row-gap: 5px;
+    padding: 20px 18px 20px 16px;
+    align-items: start;
+  }
+
+  /* No lift on touch — there is no hover to lift out of. */
+  .svc:hover,
+  .svc:focus-visible {
+    transform: none;
+  }
+
+  .svc::after {
+    width: 16px;
+    height: 16px;
+  }
+
+  .svc__head {
+    grid-area: icon;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    width: auto;
+  }
+
+  .svc__icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .svc__num {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+  }
+
+  .svc__title {
+    grid-area: title;
+    margin-top: 0;
+    font-size: 1.08rem;
+    line-height: 1.1;
+  }
+
+  .svc__desc {
+    grid-area: desc;
+    max-width: none;
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  /* The arrow is a hover affordance; the whole row is the target here. */
+  .svc__arrow {
+    display: none;
+  }
+
+  /* Active (touch) state stands in for hover. */
+  .svc:active {
+    background: var(--graphite);
+    color: var(--offwhite);
+    border-color: var(--graphite);
+  }
+
+  .svc:active .svc__edge {
+    transform: scaleY(1);
+  }
+
+  .svc:active .svc__desc {
+    color: var(--text-light-muted);
+  }
+
+  .svc:active .svc__icon {
+    color: var(--orange);
+  }
+
+  .svc:active .svc__num {
+    color: rgba(184, 138, 68, 0.7);
+  }
+
+  .svc:active::after {
+    background: #2b2e31;
+  }
+}

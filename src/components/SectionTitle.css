@@ -1,0 +1,13 @@
+.section-title--center {
+  text-align: center;
+}
+
+.section-title--center .section-title__rule {
+  margin-inline: auto;
+  transform-origin: center;
+}
+
+.section-title .eyebrow {
+  display: block;
+  margin-bottom: 20px;
+}

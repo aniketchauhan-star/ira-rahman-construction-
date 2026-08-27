@@ -1,0 +1,75 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  line-height: 1;
+}
+
+.logo__disc {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--logo-size);
+  height: var(--logo-size);
+  flex: 0 0 auto;
+  border-radius: 50%;
+  transition: transform var(--t-ui) var(--ease-out);
+}
+
+/* Off-white disc keeps the graphite artwork legible on dark surfaces. */
+.logo--plate .logo__disc {
+  background: var(--offwhite);
+  box-shadow: 0 0 0 1px rgba(184, 138, 68, 0.35);
+}
+
+.logo--plate .logo__img {
+  width: 88%;
+  height: 88%;
+}
+
+.logo__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* never distort the logo */
+  aspect-ratio: 1 / 1;
+}
+
+.logo__wordmark {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.logo__name {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.06rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.logo__sub {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--bronze);
+  white-space: nowrap;
+}
+
+a:hover .logo__disc,
+button:hover .logo__disc {
+  transform: scale(1.06);
+}
+
+@media (max-width: 560px) {
+  .logo__sub {
+    display: none;
+  }
+  .logo__name {
+    font-size: 0.94rem;
+    letter-spacing: 0.08em;
+  }
+}

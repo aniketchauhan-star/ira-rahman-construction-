@@ -1,0 +1,86 @@
+.stats {
+  margin-top: clamp(64px, 8vw, 118px);
+}
+
+.stats__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line-dark);
+  border-top: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: clamp(28px, 3.4vw, 46px) clamp(18px, 2.2vw, 34px);
+  background: var(--surface-light);
+}
+
+.stat__value {
+  display: flex;
+  align-items: baseline;
+  font-size: clamp(2.6rem, 5vw, 4.2rem);
+  line-height: 0.9;
+  color: var(--graphite);
+}
+
+.stat__suffix {
+  color: var(--orange);
+}
+
+.stat__rule {
+  display: block;
+  width: 42px;
+  height: 2px;
+  background: var(--bronze);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.stat__label {
+  font-family: var(--font-head);
+  font-weight: 500;
+  font-size: 0.82rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+@media (max-width: 900px) {
+  .stats__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .stats {
+    margin-top: 44px;
+  }
+
+  /* Kept at 2×2 all the way down: a single column turned four figures
+     into four screens-worth of scrolling for very little information. */
+  .stats__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stat {
+    gap: 10px;
+    padding: 22px 16px;
+  }
+
+  .stat__value {
+    font-size: clamp(2.1rem, 12vw, 2.9rem);
+  }
+
+  .stat__rule {
+    width: 32px;
+  }
+
+  .stat__label {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+  }
+}

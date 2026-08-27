@@ -1,0 +1,49 @@
+.mat-scene {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: clamp(240px, 34vw, 420px);
+  --mat-scene-h: clamp(240px, 34vw, 420px);
+  z-index: 0;
+  pointer-events: none;
+  mask-image: linear-gradient(to top, #000 0%, #000 58%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, #000 0%, #000 58%, transparent 100%);
+}
+
+.mat-scene canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.mat-scene--fallback {
+  background:
+    radial-gradient(60% 100% at 50% 100%, rgba(184, 138, 68, 0.14), transparent 70%),
+    linear-gradient(to top, rgba(32, 34, 36, 0.9), transparent);
+}
+
+@media (max-width: 767px) {
+  .mat-scene {
+    height: clamp(180px, 48vw, 250px);
+  }
+}
+
+.mat-scene--fallback::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 22%;
+  width: min(520px, 70%);
+  height: 10px;
+  transform: translateX(-50%);
+  background: var(--orange);
+  opacity: 0.55;
+}
+
+/* react-three-fiber sets pointer-events on its own wrapper and canvas,
+   which would otherwise make everything under this overlay unclickable.
+   Nothing in these scenes is interactive, so the whole tree opts out. */
+.mat-scene,
+.mat-scene > *,
+.mat-scene canvas {
+  pointer-events: none !important;
+}
