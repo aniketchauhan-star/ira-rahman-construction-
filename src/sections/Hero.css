@@ -190,9 +190,13 @@
     padding-bottom: calc(var(--road-h) + 22px);
   }
 
+  /* The desktop measure limit (16ch) squeezed the headline into a
+     narrow column and broke it into five ragged lines. Here the full
+     content width is the measure, and the size is set so the three
+     authored lines each hold. */
   .hero__title {
-    max-width: 13ch;
-    font-size: clamp(2.7rem, 11.5vw, 3.6rem);
+    max-width: none;
+    font-size: clamp(2.4rem, 12vw, 3.1rem);
   }
 
   .hero__rule {
@@ -240,22 +244,32 @@
   }
 }
 
-/* Below ~400px two side-by-side CTAs squeeze the arrow out of the
-   primary button. Full-width stacked buttons are stronger anyway. */
+/* Below ~400px the arrow is what overflows the primary button. On
+   touch it never animates anyway, so it goes rather than the layout. */
 @media (max-width: 400px) {
   .hero__actions {
-    flex-direction: column;
-    align-items: stretch;
     gap: 10px;
   }
 
   .hero__actions .btn {
-    flex: none;
-    width: 100%;
+    flex: 1 1 140px;
+    padding-inline: 12px;
+    font-size: 0.86rem;
+    letter-spacing: 0.1em;
+  }
+
+  .hero__actions .btn__arrow {
+    display: none;
   }
 
   .hero__eyebrow {
     letter-spacing: 0.2em;
     font-size: 0.68rem;
+  }
+}
+
+@media (max-width: 344px) {
+  .hero__title {
+    font-size: 11.2vw;
   }
 }

@@ -160,8 +160,31 @@ Nothing on this site is allowed to break the page.
 - **Missing GLB** — checked with a HEAD request, wrapped in Suspense and an
   error boundary, and falls back to the procedural excavator.
 - **Missing images** — designed placeholders naming the target folder.
-- **Touch devices** — no custom cursor, no pinned horizontal scroll, single
-  column layouts, hamburger navigation, reduced particle counts and DPR.
+- **Touch devices** — no custom cursor, no pinned horizontal scroll,
+  hamburger navigation, reduced particle counts and DPR.
+
+### Mobile
+
+Phones get their own layout rather than a narrowed desktop — see
+`@media (max-width: 767px)` in `src/styles/global.css` for the type ramp
+and spacing tokens, and the matching block at the foot of each component
+stylesheet.
+
+| | Desktop | Phone |
+| --- | --- | --- |
+| About | Two columns, photo beside the copy | Photo directly under the heading; key points become a hairline spec list |
+| Services | Three-up architectural panels | Compact spec rows — icon and reference number in a left rail |
+| Projects | Asymmetric 12-column editorial grid | Two-up index; captions move out of the image into their own band, tap opens the full viewer |
+| Materials | Five across | Two-up tiles, the fifth closing the grid full width |
+| Machinery | Tabbed showcase | A plain list with every machine's use already on screen — a tab panel would hide four short lines behind four taps |
+| Gallery | Pinned horizontal scroll | Native swipe with snap points |
+| Footer | Four columns | Navigate and Services stay side by side; every row is a 44px target |
+| Road band | 286px tall | 150px — the desktop height took a quarter of an 844px screen |
+
+Form inputs are set to 16px on phones, below which iOS Safari zooms the
+page the moment a field is focused. Every tap target is at least 40px.
+The headline is sized so its three authored lines each hold from 320px
+up, rather than breaking into five ragged ones.
 
 ### Accessibility
 
