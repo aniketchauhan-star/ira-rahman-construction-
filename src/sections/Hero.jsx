@@ -12,7 +12,6 @@ import Lines, { DotList } from '../components/Copy'
 
 export default function Hero({ ready = true }) {
   const rootRef = useRef(null)
-  const cueRef = useRef(null)
   const [sceneRef, sceneInView] = useInView({ threshold: 0, rootMargin: '10%' })
   const reduced = useReducedMotion()
 
@@ -39,20 +38,6 @@ export default function Hero({ ready = true }) {
 
     return () => ctx.revert()
   }, [ready, reduced])
-
-  // The scroll cue fades as soon as the visitor starts moving.
-  useEffect(() => {
-    const el = cueRef.current
-    if (!el) return
-    const onScroll = () => {
-      const p = Math.min(1, window.scrollY / (window.innerHeight * 0.35))
-      el.style.opacity = String(1 - p)
-      el.style.pointerEvents = p > 0.6 ? 'none' : 'auto'
-    }
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
 
   return (
     <section
@@ -111,21 +96,6 @@ export default function Hero({ ready = true }) {
           </Button>
         </div>
       </div>
-
-      {/* ---- Scroll cue: a miniature road with a vehicle marker ---- */}
-      <button
-        ref={cueRef}
-        type="button"
-        className="hero__cue"
-        onClick={() => scrollToId('about', -60)}
-        aria-label={content.a11y.scrollCueButton}
-      >
-        <span className="hero__cue-label">{content.hero.scrollCue}</span>
-        <span className="hero__cue-road" aria-hidden="true">
-          <span className="hero__cue-dashes" />
-          <span className="hero__cue-vehicle" />
-        </span>
-      </button>
     </section>
   )
 }

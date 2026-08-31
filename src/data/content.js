@@ -57,7 +57,6 @@ export const content = {
     copy: 'From construction and civil infrastructure to materials and project execution, IRHA Construction Company builds with strength, precision and reliability.',
     primaryCta: 'Explore our work',
     secondaryCta: 'Get a quote',
-    scrollCue: 'Scroll to explore',
   },
 
   /* ---------------------------------------------------------------
@@ -255,7 +254,6 @@ export const content = {
     ctaRegion: 'Request a quote',
     gateRegion: 'From foundation to finish',
     progressRail: 'Page progress',
-    scrollCueButton: 'Scroll to explore',
     prevProject: 'Previous project',
     nextProject: 'Next project',
   },
