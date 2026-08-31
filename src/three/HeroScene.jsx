@@ -16,8 +16,28 @@ function useHeroMaterials() {
     const make = (color, o = {}) =>
       new THREE.MeshStandardMaterial({ color, roughness: 0.82, metalness: 0.07, ...o })
     return {
-      concrete: make('#565b61'),
-      concreteDark: make('#33383d'),
+      /* The frame under construction is the one place the hero breaks
+         from the steel palette — real sites are full of colour, and it
+         sits in the right-hand third where no headline ever lands. */
+      concrete: make('#9a958c'),
+      concreteDark: make('#6d6862'),
+      rebar: make('#c2703a', { roughness: 0.86, metalness: 0.16 }),
+      hazard: make('#f2b01f', { roughness: 0.5 }),
+      formwork: make('#b9884c', { roughness: 0.95, metalness: 0 }),
+      netting: new THREE.MeshStandardMaterial({
+        color: '#2f8f52',
+        roughness: 0.92,
+        transparent: true,
+        opacity: 0.46,
+        side: THREE.DoubleSide,
+        depthWrite: false,
+      }),
+      tarp: new THREE.MeshStandardMaterial({
+        color: '#2f6fb5',
+        roughness: 0.72,
+        side: THREE.DoubleSide,
+      }),
+
       graphite: make(C.graphite, { roughness: 0.6, metalness: 0.22 }),
       orange: make(C.accent, { roughness: 0.55 }),
       bronze: make(C.steelLight, { roughness: 0.4, metalness: 0.5 }),
@@ -28,14 +48,20 @@ function useHeroMaterials() {
   }, [])
 }
 
-/* ---------- Concrete frame under construction ---------- */
+/* ---------- Concrete frame under construction ----------
+   Read from the front (+z): the slab edge at z = 0.85 is the face
+   the camera sees, so the netting, tarpaulin and edge protection all
+   hang just outside it while the formwork stays tucked behind. */
 function ConcreteFrame({ m }) {
   const cols = [-1.1, 0.35, 1.8]
   const rows = [-1.0, 0.5]
+  const slabY = (f) => 0.9 + f * 1.25
+  const posts = [-1.35, -0.5, 0.35, 1.2, 2.05]
+
   return (
     <group position={[3.4, -1.5, -3.1]}>
       {[0, 1, 2, 3].map((f) => (
-        <mesh key={f} position={[0.35, 0.9 + f * 1.25, -0.25]} material={m.concrete}>
+        <mesh key={f} position={[0.35, slabY(f), -0.25]} material={m.concrete}>
           <boxGeometry args={[3.6, 0.16, 2.2]} />
         </mesh>
       ))}
@@ -46,14 +72,48 @@ function ConcreteFrame({ m }) {
           </mesh>
         ))
       )}
-      {/* exposed rebar */}
+      {/* exposed rebar, rusting while it waits for the next pour */}
       {cols.map((x) =>
         rows.map((z) => (
-          <mesh key={`r-${x}-${z}`} position={[x, 5.1, z - 0.25]} material={m.bronze}>
+          <mesh key={`r-${x}-${z}`} position={[x, 5.1, z - 0.25]} material={m.rebar}>
             <boxGeometry args={[0.035, 0.55, 0.035]} />
           </mesh>
         ))
       )}
+
+      {/* Yellow edge protection on the two floors that are finished.
+          The third is where the netting hangs, so it gets none. */}
+      {[0, 1].map((f) => (
+        <group key={`rail-${f}`} position={[0, slabY(f) + 0.08, 0.83]}>
+          {[0.28, 0.56].map((y) => (
+            <mesh key={y} position={[0.35, y, 0]} material={m.hazard}>
+              <boxGeometry args={[3.6, 0.05, 0.05]} />
+            </mesh>
+          ))}
+          {posts.map((x) => (
+            <mesh key={x} position={[x, 0.34, 0]} material={m.hazard}>
+              <boxGeometry args={[0.055, 0.68, 0.055]} />
+            </mesh>
+          ))}
+        </group>
+      ))}
+
+      {/* Green shade netting across the top storey */}
+      <mesh position={[0.9, 4.08, 0.92]} material={m.netting}>
+        <planeGeometry args={[2.5, 1.28]} />
+      </mesh>
+
+      {/* Blue tarpaulin closing the left-hand bay against the dust */}
+      <mesh position={[-0.9, 2.82, 0.9]} material={m.tarp}>
+        <planeGeometry args={[1.1, 1.06]} />
+      </mesh>
+
+      {/* Plywood formwork still propped under the freshest slab */}
+      {[-0.9, 0.35, 1.6].map((x) => (
+        <mesh key={`fw-${x}`} position={[x, slabY(3) - 0.19, -0.25]} material={m.formwork}>
+          <boxGeometry args={[1.02, 0.06, 1.9]} />
+        </mesh>
+      ))}
     </group>
   )
 }
