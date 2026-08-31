@@ -34,6 +34,8 @@
 
 .contact__details dd {
   margin: 0;
+  /* Emails and URLs have no spaces to break at. */
+  overflow-wrap: anywhere;
   font-size: 0.94rem;
   line-height: 1.6;
   color: var(--text-light-muted);
@@ -256,19 +258,16 @@
     margin-top: 22px;
   }
 
-  /* Details become a compact two-column card so the form is reachable
-     without scrolling past a screen of address lines. */
+  /* Single column. Two columns worked while there were only two short
+     rows, but a full address and an email address do not fit half of a
+     phone's width — the email was overflowing its cell and being
+     clipped. */
   .contact__details {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 18px 16px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
     margin-top: 26px;
     padding-top: 24px;
-  }
-
-  .contact__details > div:first-child,
-  .contact__details > div:last-child {
-    grid-column: 1 / -1;
   }
 
   .contact__details dt {

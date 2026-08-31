@@ -84,6 +84,8 @@
 
 .foot__col a,
 .foot__col span {
+  /* Emails and URLs have no spaces to break at. */
+  overflow-wrap: anywhere;
   font-size: 0.9rem;
   color: var(--text-light-muted);
   transition: color var(--t-ui) var(--ease-out);

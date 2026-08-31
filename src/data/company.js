@@ -41,16 +41,17 @@ export const company = {
     country: 'India',
   },
 
-  // Leave '' to hide the phone row.
-  phone: '',
-  phoneDisplay: '',
+  // `phone` is what the tel: link dials, so it stays in international
+  // format; `phoneDisplay` is what people read. Leave '' to hide the row.
+  phone: '+919555927131',
+  phoneDisplay: '+91 95559 27131',
 
   // Leave '' to hide the email row.
-  email: '',
+  email: 'irhaconstruction@gmail.com',
 
   // WhatsApp number in international format WITHOUT '+' or spaces,
   // e.g. '919999999999'. Leave '' to hide the floating button.
-  whatsapp: '',
+  whatsapp: '919555927131',
 
   workingHours: [
     { days: 'Monday – Saturday', time: '9:00 AM – 7:00 PM' },
@@ -84,8 +85,10 @@ export const projectTypes = [
 
 export const whatsappLink = () => {
   if (!company.whatsapp) return ''
+  /* shortName, not fullName — the full name is set in caps and reads
+     as shouting at the top of a chat. */
   const text = encodeURIComponent(
-    `Hello ${company.fullName}, I would like to discuss a construction project.`
+    `Hello ${company.shortName}, I would like to discuss a construction project.`
   )
   return `https://wa.me/${company.whatsapp}?text=${text}`
 }
