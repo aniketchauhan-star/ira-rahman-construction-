@@ -80,7 +80,10 @@ function rand(seed) {
 }
 
 export default function ConstructionRoad({ quality = 'high' }) {
-  const segments = quality === 'low' ? 90 : 200
+  // Density, not a fixed count — the pad is long enough that a fixed
+  // count would visibly coarsen the curve.
+  const total = ROAD_LENGTH + ROAD_PAD * 2
+  const segments = Math.round(total / (quality === 'low' ? 3.2 : 1.44))
 
   const geos = useMemo(
     () => ({

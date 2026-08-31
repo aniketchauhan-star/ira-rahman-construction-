@@ -25,18 +25,18 @@ public/assets/
 │   ├── site-03.jpg
 │   └── site-04.jpg
 │
-├── materials/                     ← Materials section close-ups (optional)
+├── materials/                     ← Materials section close-ups (in place)
 │   ├── material-stone.jpg
 │   ├── material-gravel.jpg
 │   ├── material-aggregate.jpg
 │   ├── material-sand.jpg
 │   └── material-concrete.jpg
 │
-├── machinery/                     ← cut-outs with transparent backgrounds
-│   ├── excavator.png
-│   ├── crane.png
-│   ├── truck.png
-│   └── mixer.png
+├── machinery/                     ← site photographs (in place)
+│   ├── excavator.jpg
+│   ├── crane.jpg
+│   ├── truck.jpg
+│   └── mixer.jpg
 │
 └── models/                        ← optional
     └── construction-vehicle.glb
@@ -50,8 +50,8 @@ rename the path in the matching file under `src/data/`.
 **Size.** Aim for roughly 1600–2000px on the long edge and keep each file
 under ~400KB. Everything below the fold is lazy-loaded.
 
-**Machinery.** Transparent PNG cut-outs look best; these are displayed with
-`object-fit: contain` so nothing is cropped.
+**Machinery.** These are displayed with `object-fit: cover` in a 4:3 frame, so
+keep the machine near the centre of the shot.
 
 **The 3D vehicle.** `construction-vehicle.glb` is entirely optional. If the
 file is present it is loaded and used; if it is missing — or fails to parse —

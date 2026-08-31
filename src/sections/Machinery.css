@@ -77,9 +77,11 @@
   background: transparent;
 }
 
-/* Machinery cut-outs sit on the surface, not cropped into a box. */
+/* Site photographs, so they fill the frame rather than letterboxing —
+   two of the four are portrait and `contain` would strand them in the
+   middle of a 4:3 box. */
 .mach__media .smart-image__img {
-  object-fit: contain;
+  object-fit: cover;
   transition: transform var(--t-ui-slow) var(--ease-out);
 }
 

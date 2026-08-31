@@ -13,8 +13,15 @@
 /** Total length of the journey in world units. */
 export const ROAD_LENGTH = 260
 
-/** Extra road built before the start and after the end of the journey. */
-export const ROAD_PAD = 14
+/**
+ * Extra road built before the start and after the end of the journey.
+ *
+ * The band is orthographic and very wide, so a viewport can show well
+ * over 25 world units either side of the vehicle. The pad has to clear
+ * that, or the ribbon's end cap lands inside the frame and the road
+ * stops short of the edge of the band.
+ */
+export const ROAD_PAD = 60
 
 /** Road width in world units. */
 export const ROAD_WIDTH = 3.1

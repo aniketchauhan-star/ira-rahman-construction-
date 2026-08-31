@@ -1,7 +1,8 @@
 /**
  * MATERIALS
- * Images are optional — add close-ups to /public/assets/materials/
- * (e.g. material-stone.jpg) and reference them below.
+ * Photographs live in /public/assets/materials/ under the filenames
+ * below. They are cropped to fill the card, so keep the material
+ * itself near the centre of the frame.
  */
 
 export const materials = [
