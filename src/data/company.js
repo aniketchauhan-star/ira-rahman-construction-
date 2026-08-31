@@ -29,9 +29,15 @@ export const company = {
 
   // --- Contact -------------------------------------------------
   // Replace the placeholders below with your real details.
+  /* One entry per line, in the order it should be read. Add or
+     remove lines freely — the layout follows. */
   address: {
-    line1: 'Add your office address here',
-    line2: 'City, State — PIN',
+    lines: [
+      'Village Tenda, Chakjado',
+      'Post Office Dargahbela',
+      'Via Patepur',
+      'District Vaishali, Bihar 843114',
+    ],
     country: 'India',
   },
 

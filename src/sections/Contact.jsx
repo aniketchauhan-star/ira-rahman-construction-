@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { Fragment, useRef, useState } from 'react'
 import SectionTitle from '../components/SectionTitle'
 import Button from '../components/Button'
 import { company, projectTypes, whatsappLink } from '../data/company'
@@ -78,10 +78,15 @@ export default function Contact() {
             <div>
               <dt>{content.contact.labels.office}</dt>
               <dd>
-                {company.address.line1}
-                <br />
-                {company.address.line2}
-                {company.address.country ? <>, {company.address.country}</> : null}
+                {company.address.lines.map((line, i, all) => (
+                  <Fragment key={line}>
+                    {i > 0 && <br />}
+                    {line}
+                    {i === all.length - 1 && company.address.country
+                      ? `, ${company.address.country}`
+                      : null}
+                  </Fragment>
+                ))}
               </dd>
             </div>
 

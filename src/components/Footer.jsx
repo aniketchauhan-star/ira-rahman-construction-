@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import Logo from './Logo'
 import { company } from '../data/company'
 import { navLinks } from '../data/sections'
@@ -88,10 +89,15 @@ export default function Footer() {
             <li>
               <span className="foot__k">{content.contact.labels.office}</span>
               <span>
-                {company.address.line1}
-                <br />
-                {company.address.line2}
-                {company.address.country ? <>, {company.address.country}</> : null}
+                {company.address.lines.map((line, i, all) => (
+                  <Fragment key={line}>
+                    {i > 0 && <br />}
+                    {line}
+                    {i === all.length - 1 && company.address.country
+                      ? `, ${company.address.country}`
+                      : null}
+                  </Fragment>
+                ))}
               </span>
             </li>
 
