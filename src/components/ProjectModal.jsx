@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef } from 'react'
 import SmartImage from './SmartImage'
 import './ProjectModal.css'
+import { content } from '../data/content'
 
 /**
  * Full-screen project viewer.
@@ -91,7 +92,7 @@ export default function ProjectModal({ projects, index, onClose, onNavigate }) {
           type="button"
           className="pmodal__close"
           onClick={onClose}
-          aria-label="Close project viewer"
+          aria-label={content.projects.viewer.close}
           data-cursor="hover"
         >
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -104,7 +105,7 @@ export default function ProjectModal({ projects, index, onClose, onNavigate }) {
             src={project.image}
             alt={`${project.title} — ${project.category}`}
             folderLabel="/assets/projects/"
-            kindLabel="Project Image"
+            kindLabel={content.placeholders.project}
             eager
           />
         </figure>
@@ -118,33 +119,33 @@ export default function ProjectModal({ projects, index, onClose, onNavigate }) {
 
           <dl className="pmodal__facts">
             <div>
-              <dt>Location</dt>
+              <dt>{content.projects.viewer.location}</dt>
               <dd>{project.location}</dd>
             </div>
             <div>
-              <dt>Year</dt>
+              <dt>{content.projects.viewer.year}</dt>
               <dd>{project.year}</dd>
             </div>
             <div>
-              <dt>Scope</dt>
+              <dt>{content.projects.viewer.scope}</dt>
               <dd>{project.category}</dd>
             </div>
           </dl>
 
           <div className="pmodal__nav">
-            <button type="button" onClick={prev} aria-label="Previous project" data-cursor="hover">
+            <button type="button" onClick={prev} aria-label={content.a11y.prevProject} data-cursor="hover">
               <svg width="18" height="12" viewBox="0 0 18 12" fill="none" aria-hidden="true">
                 <path d="M18 6H2M7 1 2 6l5 5" stroke="currentColor" strokeWidth="1.6" />
               </svg>
-              Prev
+              {content.projects.viewer.prev}
             </button>
 
             <span className="pmodal__count mono-num">
               {String(index + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}
             </span>
 
-            <button type="button" onClick={next} aria-label="Next project" data-cursor="hover">
-              Next
+            <button type="button" onClick={next} aria-label={content.a11y.nextProject} data-cursor="hover">
+              {content.projects.viewer.next}
               <svg width="18" height="12" viewBox="0 0 18 12" fill="none" aria-hidden="true">
                 <path d="M0 6h16M11 1l5 5-5 5" stroke="currentColor" strokeWidth="1.6" />
               </svg>

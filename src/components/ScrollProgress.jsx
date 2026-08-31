@@ -3,6 +3,7 @@ import { journeyNodes } from '../data/sections'
 import { scrollToId } from '../hooks/useLenis'
 import { scrollState, damp } from '../lib/scrollStore'
 import './ScrollProgress.css'
+import { content } from '../data/content'
 
 /**
  * A miniature vertical construction track pinned to the right edge.
@@ -38,7 +39,7 @@ export default function ScrollProgress({ active, completed = [] }) {
   const activeIndex = journeyNodes.findIndex((n) => n.id === active)
 
   return (
-    <aside className="rail" aria-label="Page progress">
+    <aside className="rail" aria-label={content.a11y.progressRail}>
       <div className="rail__track" aria-hidden="true">
         <span className="rail__dashes" />
         <span ref={fillRef} className="rail__fill" />

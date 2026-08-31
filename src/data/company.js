@@ -11,6 +11,8 @@ export const company = {
   fullName: 'IRHA CONSTRUCTION COMPANY',
   shortName: 'IRHA Construction',
   monogram: 'I & I',
+  /* Small line under the wordmark in the navbar lockup */
+  tagLabel: 'Construction Company',
   tagline: 'Building stronger foundations for tomorrow.',
 
   /* Logo artwork.

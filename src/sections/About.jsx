@@ -2,46 +2,30 @@ import SectionTitle from '../components/SectionTitle'
 import ImageReveal from '../components/ImageReveal'
 import Stats from './Stats'
 import './About.css'
-
-const POINTS = [
-  { k: 'Experience', v: 'A decade of site-proven construction and civil work delivery.' },
-  { k: 'Quality', v: 'Specified materials, checked mixes and finishes built to last.' },
-  { k: 'Safety', v: 'Protected work zones and trained supervision at every stage.' },
-  { k: 'Execution', v: 'Programmes planned, resourced and met without excuses.' },
-]
+import { content } from '../data/content'
+import Lines from '../components/Copy'
 
 export default function About() {
   return (
     <section id="about" className="section section--light about">
       <div className="shell about__inner">
         <div className="about__copy">
-          <SectionTitle eyebrow="About the company" size="h1">
-            Built on
-            <br />
-            Strength.
+          <SectionTitle eyebrow={content.about.eyebrow} size="h1">
+            <Lines lines={content.about.heading} />
           </SectionTitle>
 
-          <p className="lead about__lead">
-            IRHA Construction Company works across building construction, civil
-            infrastructure and construction materials. We take on structural work, earthwork and
-            complete project execution — and we run each site with the same discipline, whatever its
-            scale.
-          </p>
+          <p className="lead about__lead">{content.about.lead}</p>
 
-          <p className="about__body">
-            Modern construction is a coordination problem as much as a technical one. Our teams plan
-            sequencing, keep material supply ahead of the programme and hold the standard at every
-            pour, every level and every handover.
-          </p>
+          <p className="about__body">{content.about.body}</p>
 
           <dl className="about__points">
-            {POINTS.map((p, i) => (
-              <div key={p.k} className="about__point" style={{ '--i': i }}>
+            {content.about.points.map((p, i) => (
+              <div key={p.title} className="about__point" style={{ '--i': i }}>
                 <dt>
                   <span className="about__point-num mono-num">{String(i + 1).padStart(2, '0')}</span>
-                  {p.k}
+                  {p.title}
                 </dt>
-                <dd>{p.v}</dd>
+                <dd>{p.text}</dd>
               </div>
             ))}
           </dl>
@@ -58,15 +42,15 @@ export default function About() {
             <ImageReveal
               className="about__image"
               src="/assets/site/site-01.jpg"
-              alt="IRHA Construction Company site works in progress"
+              alt={content.about.imageAlt}
               folderLabel="/assets/site/"
-              kindLabel="Site Image"
+              kindLabel={content.placeholders.site}
             />
           </div>
 
           <figcaption className="about__caption">
-            <span className="about__caption-k">On site</span>
-            Active construction works
+            <span className="about__caption-k">{content.about.captionKicker}</span>
+            {content.about.caption}
           </figcaption>
         </figure>
       </div>

@@ -4,6 +4,7 @@ import Button from './Button'
 import { navLinks } from '../data/sections'
 import { scrollToId } from '../hooks/useLenis'
 import './Navbar.css'
+import { content } from '../data/content'
 
 export default function Navbar({ active = 'home' }) {
   const [scrolled, setScrolled] = useState(false)
@@ -66,7 +67,7 @@ export default function Navbar({ active = 'home' }) {
           <Logo height={30} variant="mark" withWordmark />
         </a>
 
-        <nav className="nav__links" aria-label="Primary">
+        <nav className="nav__links" aria-label={content.a11y.primaryNav}>
           <ul>
             {navLinks.map((link) => (
               <li key={link.id}>
@@ -93,7 +94,7 @@ export default function Navbar({ active = 'home' }) {
             arrow
             onClick={(e) => go(e, 'contact')}
           >
-            Get a Quote
+            {content.nav.cta}
           </Button>
 
           <button
@@ -102,7 +103,7 @@ export default function Navbar({ active = 'home' }) {
             className="nav__burger"
             aria-expanded={open}
             aria-controls="nav-panel"
-            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-label={open ? content.nav.closeMenu : content.nav.openMenu}
             onClick={() => setOpen((v) => !v)}
           >
             <span />
@@ -137,7 +138,7 @@ export default function Navbar({ active = 'home' }) {
         </ul>
 
         <a href="#contact" className="nav__panel-cta" onClick={(e) => go(e, 'contact')}>
-          Get a Quote
+          {content.nav.cta}
           <svg width="18" height="12" viewBox="0 0 18 12" fill="none" aria-hidden="true">
             <path d="M0 6h16M11 1l5 5-5 5" stroke="currentColor" strokeWidth="1.6" />
           </svg>

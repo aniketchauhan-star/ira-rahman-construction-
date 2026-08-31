@@ -1,5 +1,6 @@
 import ImageReveal from './ImageReveal'
 import './ProjectCard.css'
+import { content } from '../data/content'
 
 export default function ProjectCard({ project, index = 0, onOpen }) {
   return (
@@ -16,7 +17,7 @@ export default function ProjectCard({ project, index = 0, onOpen }) {
           src={project.image}
           alt={`${project.title} — ${project.category}`}
           folderLabel="/assets/projects/"
-          kindLabel="Project Image"
+          kindLabel={content.placeholders.project}
           delay={index * 0.05}
         />
 

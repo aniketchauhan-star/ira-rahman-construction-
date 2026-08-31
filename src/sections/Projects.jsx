@@ -5,6 +5,8 @@ import ProjectModal from '../components/ProjectModal'
 import { projects } from '../data/projects'
 import { getLenis } from '../hooks/useLenis'
 import './Projects.css'
+import { content } from '../data/content'
+import Lines from '../components/Copy'
 
 export default function Projects() {
   const [openIndex, setOpenIndex] = useState(null)
@@ -23,16 +25,11 @@ export default function Projects() {
     <section id="projects" className="section section--light projects">
       <div className="shell">
         <div className="projects__head">
-          <SectionTitle eyebrow="Selected work" size="h1">
-            Projects built
-            <br />
-            with purpose.
+          <SectionTitle eyebrow={content.projects.eyebrow} size="h1">
+            <Lines lines={content.projects.heading} />
           </SectionTitle>
 
-          <p className="lead projects__intro">
-            Commercial, residential, infrastructure and material supply — each one delivered against
-            a real programme, on a real site.
-          </p>
+          <p className="lead projects__intro">{content.projects.intro}</p>
         </div>
 
         <div className="projects__grid">

@@ -4,6 +4,7 @@ import { navLinks } from '../data/sections'
 import { services } from '../data/services'
 import { scrollToId } from '../hooks/useLenis'
 import './Footer.css'
+import { content } from '../data/content'
 
 const SOCIAL_PATHS = {
   instagram:
@@ -26,16 +27,13 @@ export default function Footer() {
   return (
     <footer className="foot" id="footer">
       <span className="foot__ghost" aria-hidden="true">
-        IRHA CONSTRUCTION
+        {content.footer.ghost}
       </span>
 
       <div className="shell foot__inner">
         <div className="foot__brand">
           <Logo height={96} variant="full" />
-          <p className="foot__tag">
-            Building construction, civil infrastructure and construction materials — delivered with
-            strength, precision and reliability.
-          </p>
+          <p className="foot__tag">{content.footer.tagline}</p>
 
           {socials.length > 0 && (
             <ul className="foot__socials">
@@ -58,8 +56,8 @@ export default function Footer() {
           )}
         </div>
 
-        <nav className="foot__col" aria-label="Footer navigation">
-          <h2 className="foot__h">Navigate</h2>
+        <nav className="foot__col" aria-label={content.a11y.footerNav}>
+          <h2 className="foot__h">{content.footer.navHeading}</h2>
           <ul>
             {navLinks.map((l) => (
               <li key={l.id}>
@@ -72,7 +70,7 @@ export default function Footer() {
         </nav>
 
         <div className="foot__col">
-          <h2 className="foot__h">Services</h2>
+          <h2 className="foot__h">{content.footer.servicesHeading}</h2>
           <ul>
             {services.map((s) => (
               <li key={s.id}>
@@ -85,10 +83,10 @@ export default function Footer() {
         </div>
 
         <address className="foot__col foot__contact">
-          <h2 className="foot__h">Contact</h2>
+          <h2 className="foot__h">{content.footer.contactHeading}</h2>
           <ul>
             <li>
-              <span className="foot__k">Office</span>
+              <span className="foot__k">{content.contact.labels.office}</span>
               <span>
                 {company.address.line1}
                 <br />
@@ -99,7 +97,7 @@ export default function Footer() {
 
             {company.phone && (
               <li>
-                <span className="foot__k">Phone</span>
+                <span className="foot__k">{content.contact.labels.phone}</span>
                 <a href={`tel:${company.phone}`} data-cursor="hover">
                   {company.phoneDisplay || company.phone}
                 </a>
@@ -108,7 +106,7 @@ export default function Footer() {
 
             {company.email && (
               <li>
-                <span className="foot__k">Email</span>
+                <span className="foot__k">{content.contact.labels.email}</span>
                 <a href={`mailto:${company.email}`} data-cursor="hover">
                   {company.email}
                 </a>
@@ -127,7 +125,7 @@ export default function Footer() {
 
       <div className="shell foot__base">
         <p>© {year} {company.fullName}</p>
-        <p className="foot__base-note">All rights reserved.</p>
+        <p className="foot__base-note">{content.footer.rights}</p>
       </div>
     </footer>
   )

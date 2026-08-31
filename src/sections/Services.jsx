@@ -7,6 +7,8 @@ import { services } from '../data/services'
 import { DUR, EASE, STAGGER } from '../lib/motion'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import './Services.css'
+import { content } from '../data/content'
+import Lines from '../components/Copy'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -44,14 +46,11 @@ export default function Services() {
     <section id="services" className="section section--light services">
       <div className="shell">
         <div className="services__head">
-          <SectionTitle eyebrow="Capabilities" size="h1">
-            What we build
+          <SectionTitle eyebrow={content.services.eyebrow} size="h1">
+            <Lines lines={content.services.heading} />
           </SectionTitle>
 
-          <p className="lead services__intro">
-            Six disciplines, one delivery standard. Whether the scope is a single foundation or an
-            end-to-end programme, the same team plans it, resources it and stands behind it.
-          </p>
+          <p className="lead services__intro">{content.services.intro}</p>
         </div>
 
         <div ref={gridRef} className="services__grid">

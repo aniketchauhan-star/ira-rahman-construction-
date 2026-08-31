@@ -7,6 +7,8 @@ import { useReducedMotion } from '../hooks/useReducedMotion'
 import { scrollToId } from '../hooks/useLenis'
 import { EASE, STAGGER } from '../lib/motion'
 import './Hero.css'
+import { content } from '../data/content'
+import Lines, { DotList } from '../components/Copy'
 
 export default function Hero({ ready = true }) {
   const rootRef = useRef(null)
@@ -57,7 +59,7 @@ export default function Hero({ ready = true }) {
       id="home"
       ref={rootRef}
       className="hero section--no-road-pad"
-      aria-label="Introduction"
+      aria-label={content.a11y.heroRegion}
     >
       <div ref={sceneRef} className="hero__scene-holder">
         <HeroScene active={sceneInView} />
@@ -67,23 +69,17 @@ export default function Hero({ ready = true }) {
 
       <div className="shell hero__inner">
         <p className="eyebrow hero__eyebrow" data-hero-in>
-          Engineering <span aria-hidden="true">•</span> Construction <span aria-hidden="true">•</span>{' '}
-          Infrastructure
+          <DotList items={content.hero.eyebrow} />
         </p>
 
         <h1 className="hero__title h-display" data-hero-in>
-          Building <span className="accent">stronger</span>
-          <br />
-          Foundations for
-          <br />
-          Tomorrow.
+          <Lines lines={content.hero.heading} />
         </h1>
 
         <span className="hero__rule" aria-hidden="true" />
 
         <p className="hero__copy lead" data-hero-in>
-          From construction and civil infrastructure to materials and project execution, IRHA
-          Construction Company builds with strength, precision and reliability.
+          {content.hero.copy}
         </p>
 
         <div className="hero__actions" data-hero-in>
@@ -98,7 +94,7 @@ export default function Hero({ ready = true }) {
               scrollToId('projects', -60)
             }}
           >
-            Explore our work
+            {content.hero.primaryCta}
           </Button>
 
           <Button
@@ -111,7 +107,7 @@ export default function Hero({ ready = true }) {
               scrollToId('contact', -60)
             }}
           >
-            Get a quote
+            {content.hero.secondaryCta}
           </Button>
         </div>
       </div>
@@ -122,9 +118,9 @@ export default function Hero({ ready = true }) {
         type="button"
         className="hero__cue"
         onClick={() => scrollToId('about', -60)}
-        aria-label="Scroll to explore"
+        aria-label={content.a11y.scrollCueButton}
       >
-        <span className="hero__cue-label">Scroll to explore</span>
+        <span className="hero__cue-label">{content.hero.scrollCue}</span>
         <span className="hero__cue-road" aria-hidden="true">
           <span className="hero__cue-dashes" />
           <span className="hero__cue-vehicle" />

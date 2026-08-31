@@ -51,7 +51,7 @@ export default function Logo({
       {withWordmark && (
         <span className="logo__wordmark">
           <span className="logo__name">{company.name}</span>
-          <span className="logo__sub">Construction Company</span>
+          <span className="logo__sub">{company.tagLabel}</span>
         </span>
       )}
     </span>

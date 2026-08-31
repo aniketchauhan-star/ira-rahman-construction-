@@ -5,6 +5,7 @@ import { stats } from '../data/company'
 import { DUR, EASE, STAGGER } from '../lib/motion'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import './Stats.css'
+import { content } from '../data/content'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -63,7 +64,7 @@ export default function Stats() {
   }, [reduced])
 
   return (
-    <div ref={rootRef} className="shell stats" aria-label="Company statistics">
+    <div ref={rootRef} className="shell stats" aria-label={content.a11y.statsRegion}>
       <ul className="stats__grid">
         {stats.map((s) => (
           <li key={s.id} className="stat">

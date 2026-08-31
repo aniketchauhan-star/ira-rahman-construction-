@@ -1,3 +1,4 @@
+import { content } from '../data/content'
 /**
  * ENQUIRY SUBMISSION
  * ---------------------------------------------------------------
@@ -48,22 +49,23 @@ const PHONE_RE = /^[+()\-\s\d]{7,20}$/
 
 export function validateEnquiry(values) {
   const errors = {}
+  const m = content.contact.validation
 
-  if (!values.name.trim()) errors.name = 'Please enter your full name.'
-  else if (values.name.trim().length < 2) errors.name = 'That name looks too short.'
+  if (!values.name.trim()) errors.name = m.nameRequired
+  else if (values.name.trim().length < 2) errors.name = m.nameShort
 
-  if (!values.phone.trim()) errors.phone = 'Please enter a phone number.'
-  else if (!PHONE_RE.test(values.phone.trim())) errors.phone = 'Please check this phone number.'
+  if (!values.phone.trim()) errors.phone = m.phoneRequired
+  else if (!PHONE_RE.test(values.phone.trim())) errors.phone = m.phoneInvalid
 
-  if (!values.email.trim()) errors.email = 'Please enter an email address.'
-  else if (!EMAIL_RE.test(values.email.trim())) errors.email = 'Please check this email address.'
+  if (!values.email.trim()) errors.email = m.emailRequired
+  else if (!EMAIL_RE.test(values.email.trim())) errors.email = m.emailInvalid
 
-  if (!values.projectType) errors.projectType = 'Please choose a project type.'
+  if (!values.projectType) errors.projectType = m.projectTypeRequired
 
-  if (!values.location.trim()) errors.location = 'Please enter the project location.'
+  if (!values.location.trim()) errors.location = m.locationRequired
 
-  if (!values.message.trim()) errors.message = 'Please tell us about the project.'
-  else if (values.message.trim().length < 12) errors.message = 'A little more detail would help.'
+  if (!values.message.trim()) errors.message = m.messageRequired
+  else if (values.message.trim().length < 12) errors.message = m.messageShort
 
   return errors
 }

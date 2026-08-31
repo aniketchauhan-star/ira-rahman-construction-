@@ -4,6 +4,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { EASE, STAGGER } from '../lib/motion'
 import './JourneyGate.css'
+import { content } from '../data/content'
+import { Rich } from '../components/Copy'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -54,7 +56,7 @@ export default function JourneyGate() {
   }, [reduced])
 
   return (
-    <section ref={rootRef} className="gate section--no-road-pad" aria-label="From foundation to finish">
+    <section ref={rootRef} className="gate section--no-road-pad" aria-label={content.a11y.gateRegion}>
       <div className="gate__leaf gate__leaf--l" aria-hidden="true">
         <span className="gate__hazard" />
       </div>
@@ -64,10 +66,11 @@ export default function JourneyGate() {
 
       <div className="shell gate__inner">
         <h2 className="gate__title h1">
-          <span className="gate__line">From foundation</span>
-          <span className="gate__line">
-            to <span className="accent">finish.</span>
-          </span>
+          {content.journeyGate.heading.map((line) => (
+            <span key={line} className="gate__line">
+              <Rich text={line} />
+            </span>
+          ))}
         </h2>
         <span className="gate__rule" aria-hidden="true" />
       </div>

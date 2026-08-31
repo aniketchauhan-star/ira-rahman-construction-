@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import './SmartImage.css'
+import { content } from '../data/content'
 
 /**
  * Image with a designed fallback.
@@ -41,7 +42,7 @@ export default function SmartImage({
         <div className="smart-image__ph">
           <span className="smart-image__ph-grid" aria-hidden="true" />
           <span className="smart-image__ph-kind">{kindLabel}</span>
-          <span className="smart-image__ph-hint">Add image to</span>
+          <span className="smart-image__ph-hint">{content.placeholders.hint}</span>
           <span className="smart-image__ph-path">{folderLabel}</span>
         </div>
       </div>

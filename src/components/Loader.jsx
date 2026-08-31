@@ -4,6 +4,7 @@ import Logo from './Logo'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { EASE } from '../lib/motion'
 import './Loader.css'
+import { content } from '../data/content'
 
 /**
  * Short opening sequence: the logo settles, then a small orange
@@ -61,11 +62,11 @@ export default function Loader({ onComplete }) {
     return () => ctx.revert()
   }, [onComplete, reduced])
 
-  const word = 'BUILDING SOMETHING STRONG'
+  const word = content.loader.word
 
   return (
     <div ref={rootRef} className="loader" role="status" aria-live="polite">
-      <span className="sr-only">Loading IRHA Construction Company</span>
+      <span className="sr-only">{content.loader.srLabel}</span>
       <div className="loader__inner">
         <div className="loader__logo">
           <Logo height={190} variant="full" />

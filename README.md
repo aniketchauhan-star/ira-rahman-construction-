@@ -48,6 +48,7 @@ from these files and never hard-code content.
 
 | File | What it controls |
 | --- | --- |
+| `src/data/content.js` | **Every heading, paragraph, label and button on the site** |
 | `src/data/company.js` | Name, address, phone, email, WhatsApp, working hours, socials, statistics, project-type options |
 | `src/data/sections.js` | Navigation links and the vertical progress rail |
 | `src/data/services.js` | The six service panels |
@@ -56,6 +57,25 @@ from these files and never hard-code content.
 | `src/data/machinery.js` | Machinery showcase |
 | `src/data/gallery.js` | "On Site" horizontal gallery |
 | `src/data/whyus.js` | "Why IRHA?" reasons |
+
+### Writing copy
+
+`content.js` holds all the one-off wording — headings, intros, button
+labels, form labels, validation messages, the success state, even the
+screen-reader region names. No component edits required.
+
+Two conventions:
+
+```js
+// One string per line, broken exactly where it should break on screen
+heading: ['Built on', 'Strength.']
+
+// Square brackets highlight a word in the accent colour
+heading: ['Have a project', 'in [mind?]']
+```
+
+`components/Copy.jsx` renders both. Everything outside `heading` and
+`eyebrow` is plain text.
 
 ### Contact details
 

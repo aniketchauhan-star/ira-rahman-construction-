@@ -4,6 +4,8 @@ import SmartImage from '../components/SmartImage'
 import { machinery } from '../data/machinery'
 import { useIsMobile } from '../hooks/useMediaQuery'
 import './Machinery.css'
+import { content } from '../data/content'
+import Lines from '../components/Copy'
 
 /**
  * Nothing auto-advances — the visitor drives this.
@@ -27,7 +29,7 @@ export default function Machinery() {
         src={m.image}
         alt={m.title}
         folderLabel="/assets/machinery/"
-        kindLabel="Machine"
+        kindLabel={content.placeholders.machine}
         imgClassName="mach__img"
       />
     </span>
@@ -37,16 +39,13 @@ export default function Machinery() {
     <section id="machinery" className="section section--dark mach">
       <div className="shell">
         <div className="mach__head">
-          <SectionTitle eyebrow="Plant & equipment" size="h1">
-            Built with
-            <br />
-            the right machinery.
+          <SectionTitle eyebrow={content.machinery.eyebrow} size="h1">
+            <Lines lines={content.machinery.heading} />
           </SectionTitle>
 
           <p className="lead mach__intro">
-            The right machine for the right task — matched to the ground conditions, the programme
-            and the load.
-            {!isMobile && ' Select a machine to see where it works.'}
+            {content.machinery.intro}
+            {!isMobile && content.machinery.introDesktopSuffix}
           </p>
         </div>
 
@@ -66,7 +65,7 @@ export default function Machinery() {
           </ul>
         ) : (
           <div className="mach__stage">
-            <ul className="mach__list" role="tablist" aria-label="Machinery">
+            <ul className="mach__list" role="tablist" aria-label={content.a11y.machineryTabs}>
               {machinery.map((m, i) => {
                 const isActive = m.id === activeId
                 return (

@@ -1,11 +1,13 @@
 import Button from '../components/Button'
 import { scrollToId } from '../hooks/useLenis'
 import './QuoteCTA.css'
+import { content } from '../data/content'
+import Lines from '../components/Copy'
 
 /** Full-width closing statement with a crane structure reaching in. */
 export default function QuoteCTA() {
   return (
-    <section className="cta section--no-road-pad" aria-label="Request a quote">
+    <section className="cta section--no-road-pad" aria-label={content.a11y.ctaRegion}>
       {/* Crane structure extending from the right */}
       <svg className="cta__crane" viewBox="0 0 420 300" fill="none" aria-hidden="true">
         <path d="M360 300V44" stroke="currentColor" strokeWidth="7" />
@@ -29,12 +31,10 @@ export default function QuoteCTA() {
 
       <div className="shell cta__inner">
         <h2 className="cta__title h1">
-          Have a project
-          <br />
-          in <span className="accent">mind?</span>
+          <Lines lines={content.quoteCta.heading} />
         </h2>
 
-        <p className="cta__text">Let&apos;s build something strong together.</p>
+        <p className="cta__text">{content.quoteCta.text}</p>
 
         <Button
           as="a"
@@ -48,7 +48,7 @@ export default function QuoteCTA() {
             scrollToId('contact', -60)
           }}
         >
-          Request a quote
+          {content.quoteCta.button}
         </Button>
       </div>
     </section>

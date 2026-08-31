@@ -7,6 +7,8 @@ import { siteGallery } from '../data/gallery'
 import { useIsMobile } from '../hooks/useMediaQuery'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import './Gallery.css'
+import { content } from '../data/content'
+import Lines from '../components/Copy'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -54,14 +56,14 @@ export default function Gallery() {
     <section
       ref={rootRef}
       className="gallery section--no-road-pad"
-      aria-label="On site gallery"
+      aria-label={content.a11y.galleryRegion}
     >
       <div className="shell gallery__head">
-        <SectionTitle eyebrow="Photography" size="h2">
-          On site
+        <SectionTitle eyebrow={content.gallery.eyebrow} size="h2">
+          <Lines lines={content.gallery.heading} />
         </SectionTitle>
         <p className="gallery__hint">
-          {isMobile || reduced ? 'Swipe to browse' : 'Keep scrolling to move through the site'}
+          {isMobile || reduced ? content.gallery.hintMobile : content.gallery.hintDesktop}
         </p>
       </div>
 
@@ -74,7 +76,7 @@ export default function Gallery() {
                 src={shot.image}
                 alt={shot.caption}
                 folderLabel="/assets/site/"
-                kindLabel="Site Image"
+                kindLabel={content.placeholders.site}
                 delay={i * 0.04}
               />
               <figcaption className="shot__cap">
@@ -87,9 +89,7 @@ export default function Gallery() {
           <div className="gallery__end" aria-hidden="true">
             <span className="gallery__end-rule" />
             <span className="gallery__end-text">
-              More work
-              <br />
-              on request
+              <Lines lines={content.gallery.endText} />
             </span>
           </div>
         </div>

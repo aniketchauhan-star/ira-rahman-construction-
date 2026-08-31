@@ -4,6 +4,8 @@ import Button from '../components/Button'
 import { company, projectTypes, whatsappLink } from '../data/company'
 import { submitEnquiry, validateEnquiry } from '../lib/submitEnquiry'
 import './Contact.css'
+import { content } from '../data/content'
+import Lines from '../components/Copy'
 
 const EMPTY = {
   name: '',
@@ -14,13 +16,15 @@ const EMPTY = {
   message: '',
 }
 
+/* Labels come from content.js; `id` keys the data and stays fixed. */
+const F = content.contact.fields
 const FIELDS = [
-  { id: 'name', label: 'Full name', type: 'text', autoComplete: 'name', span: 1 },
-  { id: 'phone', label: 'Phone number', type: 'tel', autoComplete: 'tel', span: 1 },
-  { id: 'email', label: 'Email', type: 'email', autoComplete: 'email', span: 1 },
-  { id: 'projectType', label: 'Project type', type: 'select', span: 1 },
-  { id: 'location', label: 'Location', type: 'text', autoComplete: 'address-level2', span: 2 },
-  { id: 'message', label: 'Message', type: 'textarea', span: 2 },
+  { id: 'name', label: F.name, type: 'text', autoComplete: 'name', span: 1 },
+  { id: 'phone', label: F.phone, type: 'tel', autoComplete: 'tel', span: 1 },
+  { id: 'email', label: F.email, type: 'email', autoComplete: 'email', span: 1 },
+  { id: 'projectType', label: F.projectType, type: 'select', span: 1 },
+  { id: 'location', label: F.location, type: 'text', autoComplete: 'address-level2', span: 2 },
+  { id: 'message', label: F.message, type: 'textarea', span: 2 },
 ]
 
 export default function Contact() {
@@ -62,20 +66,17 @@ export default function Contact() {
       <div className="shell contact__inner">
         {/* ---- Details ---- */}
         <div className="contact__aside">
-          <SectionTitle eyebrow="Get in touch" size="h1">
-            Start your
-            <br />
-            project.
+          <SectionTitle eyebrow={content.contact.eyebrow} size="h1">
+            <Lines lines={content.contact.heading} />
           </SectionTitle>
 
           <p className="lead contact__lead">
-            Send us the scope, the site and the timeline. We will come back with a clear, costed
-            approach — not a vague estimate.
+            {content.contact.lead}
           </p>
 
           <dl className="contact__details">
             <div>
-              <dt>Office</dt>
+              <dt>{content.contact.labels.office}</dt>
               <dd>
                 {company.address.line1}
                 <br />
@@ -86,7 +87,7 @@ export default function Contact() {
 
             {company.phone && (
               <div>
-                <dt>Phone</dt>
+                <dt>{content.contact.labels.phone}</dt>
                 <dd>
                   <a href={`tel:${company.phone}`} data-cursor="hover">
                     {company.phoneDisplay || company.phone}
@@ -97,7 +98,7 @@ export default function Contact() {
 
             {company.email && (
               <div>
-                <dt>Email</dt>
+                <dt>{content.contact.labels.email}</dt>
                 <dd>
                   <a href={`mailto:${company.email}`} data-cursor="hover">
                     {company.email}
@@ -108,7 +109,7 @@ export default function Contact() {
 
             {wa && (
               <div>
-                <dt>WhatsApp</dt>
+                <dt>{content.contact.labels.whatsapp}</dt>
                 <dd>
                   <a href={wa} target="_blank" rel="noopener noreferrer" data-cursor="hover">
                     Message us directly
@@ -118,7 +119,7 @@ export default function Contact() {
             )}
 
             <div>
-              <dt>Working hours</dt>
+              <dt>{content.contact.labels.hours}</dt>
               <dd>
                 {company.workingHours.map((h) => (
                   <span key={h.days} className="contact__hours">
@@ -139,13 +140,10 @@ export default function Contact() {
                   <path d="M8 18l6 6 12-14" stroke="currentColor" strokeWidth="2.4" />
                 </svg>
               </span>
-              <h3 className="h3">Enquiry received.</h3>
-              <p>
-                Thank you. Your project details are with our team and we will respond during working
-                hours.
-              </p>
+              <h3 className="h3">{content.contact.successTitle}</h3>
+              <p>{content.contact.successText}</p>
               <Button variant="ghost" onClick={() => setStatus('idle')}>
-                Send another enquiry
+                {content.contact.successAgain}
               </Button>
             </div>
           ) : (
@@ -172,7 +170,7 @@ export default function Contact() {
                           aria-describedby={describedBy}
                           required
                         >
-                          <option value="">Select a project type</option>
+                          <option value="">{content.contact.selectPlaceholder}</option>
                           {projectTypes.map((t) => (
                             <option key={t} value={t}>
                               {t}
@@ -186,7 +184,7 @@ export default function Contact() {
                           rows={5}
                           value={values[f.id]}
                           onChange={(e) => set(f.id, e.target.value)}
-                          placeholder="Scope, site conditions, timeline…"
+                          placeholder={content.contact.messagePlaceholder}
                           aria-invalid={Boolean(err)}
                           aria-describedby={describedBy}
                           required
@@ -219,7 +217,7 @@ export default function Contact() {
 
               {status === 'error' && (
                 <p className="contact__failed" role="alert">
-                  Something went wrong sending your enquiry. Please try again, or contact us
+                  {content.contact.errorText}
                   directly.
                 </p>
               )}
@@ -232,7 +230,7 @@ export default function Contact() {
                 disabled={status === 'sending'}
                 className="contact__submit"
               >
-                {status === 'sending' ? 'Sending…' : 'Send project enquiry'}
+                {status === 'sending' ? content.contact.submitting : content.contact.submit}
               </Button>
             </form>
           )}

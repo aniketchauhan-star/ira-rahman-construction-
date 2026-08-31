@@ -6,6 +6,8 @@ import { reasons } from '../data/whyus'
 import { DUR, EASE, STAGGER } from '../lib/motion'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import './WhyUs.css'
+import { content } from '../data/content'
+import Lines from '../components/Copy'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -61,8 +63,8 @@ export default function WhyUs() {
   return (
     <section ref={rootRef} className="section section--light why">
       <div className="shell">
-        <SectionTitle eyebrow="The difference" size="h1" className="why__title">
-          Why IRHA?
+        <SectionTitle eyebrow={content.whyUs.eyebrow} size="h1" className="why__title">
+          <Lines lines={content.whyUs.heading} />
         </SectionTitle>
 
         <ol className="why__list">

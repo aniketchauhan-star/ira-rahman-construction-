@@ -10,6 +10,8 @@ import { useInView } from '../hooks/useInView'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { scrollState } from '../lib/scrollStore'
 import './Materials.css'
+import { content } from '../data/content'
+import Lines from '../components/Copy'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -63,16 +65,11 @@ export default function Materials() {
 
       <div className="shell materials__inner">
         <div className="materials__head">
-          <SectionTitle eyebrow="Supply" size="h1">
-            Materials that
-            <br />
-            build strength.
+          <SectionTitle eyebrow={content.materials.eyebrow} size="h1">
+            <Lines lines={content.materials.heading} />
           </SectionTitle>
 
-          <p className="lead materials__intro">
-            We supply and place the materials our own sites depend on. Graded, checked and delivered
-            against the programme — because a structure is only as good as what goes into it.
-          </p>
+          <p className="lead materials__intro">{content.materials.intro}</p>
         </div>
 
         <ul className="materials__grid">
@@ -83,7 +80,7 @@ export default function Materials() {
                   src={m.image}
                   alt={m.title}
                   folderLabel="/assets/materials/"
-                  kindLabel="Material"
+                  kindLabel={content.placeholders.material}
                 />
               </div>
 
@@ -99,12 +96,12 @@ export default function Materials() {
         </ul>
 
         <p className="materials__caption">
-          <span className="materials__caption-k">Raw material</span>
+          <span className="materials__caption-k">{content.materials.captionFrom}</span>
           <span className="materials__caption-arrow" aria-hidden="true">
             →
           </span>
           <span className="materials__caption-k materials__caption-k--accent">
-            Strong foundation
+            {content.materials.captionTo}
           </span>
         </p>
       </div>
