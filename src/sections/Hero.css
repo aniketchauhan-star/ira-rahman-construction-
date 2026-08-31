@@ -132,7 +132,7 @@
   left: 0;
   width: 17px;
   height: 10px;
-  background: var(--accent);
+  background: var(--machine);
   border-radius: 1px;
   animation: cueDrive 3.4s var(--ease-inout) infinite;
 }
@@ -154,7 +154,7 @@
   top: -4px;
   width: 7px;
   height: 4px;
-  background: var(--accent-2);
+  background: var(--machine-deep);
 }
 
 @keyframes cueDrive {

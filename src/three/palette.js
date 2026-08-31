@@ -35,6 +35,13 @@ export const C = {
   aggregate: '#5c6065',
   sand: '#9aa0a8',
 
+  /* ---- Plant ----
+     Painted machinery yellow. Kept off full saturation so it reads as
+     a working machine rather than a warning sign. */
+  machine: '#f2a81d',
+  machineDeep: '#c4820f',
+  machineDark: '#8f5f0b',
+
   /* ---- Emphasis ----
      The bright end of the ramp replaces the old orange: road edges,
      markings, beacons and highlights all read as polished metal. */

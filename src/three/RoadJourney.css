@@ -113,7 +113,8 @@
   left: 12%;
   width: 92px;
   height: 52px;
-  color: var(--accent);
+  /* currentColor paints the body in the SVG below */
+  color: var(--machine);
 }
 
 .road-static__note {

@@ -66,9 +66,10 @@
 .rail__marker-body {
   width: 14px;
   height: 10px;
-  background: var(--accent);
+  /* Matches the machine on the road, not the surface accent. */
+  background: var(--machine);
   border-radius: 1px;
-  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.16);
+  box-shadow: 0 0 0 3px rgba(var(--machine-rgb), 0.18);
   position: relative;
 }
 
@@ -91,7 +92,7 @@
   top: -4px;
   width: 6px;
   height: 4px;
-  background: var(--accent-2);
+  background: var(--machine-deep);
   border-radius: 1px 1px 0 0;
 }
 

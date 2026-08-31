@@ -23,6 +23,16 @@
   --offwhite: #f2f3f5;   /* cooled to sit under a steel identity */
   --offwhite-2: #e6e8ec;
 
+  /* ---- Plant ----
+     The one colour on the site that is not from the logo. Construction
+     machinery is yellow, and the vehicle is the site's signature
+     element, so it keeps its own identity against the steel palette.
+     Deliberately not surface-flipped: a machine is the same colour on
+     any ground. */
+  --machine: #f2a81d;
+  --machine-deep: #c4820f;
+  --machine-rgb: 242, 168, 29;
+
   /* ---- Surfaces ---- */
   --surface-light: var(--offwhite);
   --surface-light-2: var(--offwhite-2);
