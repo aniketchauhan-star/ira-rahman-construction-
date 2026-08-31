@@ -43,7 +43,10 @@ export default function Stats() {
             const obj = { v: 0 }
             gsap.to(obj, {
               v: target,
-              duration: 1.5,
+              /* Scaled to the size of the figure. At a fixed duration a
+                 small target spends most of the animation rounding to 0,
+                 which reads as a number that failed to load. */
+              duration: gsap.utils.clamp(0.4, 1.5, 0.4 + target * 0.011),
               ease: EASE.soft,
               onUpdate: () => {
                 el.textContent = String(Math.round(obj.v))

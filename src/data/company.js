@@ -61,8 +61,8 @@ export const company = {
 }
 
 export const stats = [
-  { id: 'years', value: 10, suffix: '+', label: 'Years of Experience' },
-  { id: 'projects', value: 50, suffix: '+', label: 'Completed Projects' },
+  { id: 'years', value: 1, suffix: '+', label: 'Years of Experience' },
+  { id: 'projects', value: 1, suffix: '+', label: 'Completed Projects' },
   { id: 'quality', value: 100, suffix: '%', label: 'Commitment to Quality' },
   { id: 'support', value: 24, suffix: '/7', label: 'Site Coordination' },
 ]
