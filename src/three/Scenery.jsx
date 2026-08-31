@@ -12,16 +12,16 @@ function useSceneryMaterials() {
     const make = (color, o = {}) =>
       new THREE.MeshStandardMaterial({ color, roughness: 0.78, metalness: 0.08, ...o })
     return {
-      concrete: make('#8e8b84'),
-      concreteDark: make('#6b6862'),
+      concrete: make('#8a8e94'),
+      concreteDark: make('#65696f'),
       graphite: make(C.graphite, { roughness: 0.6, metalness: 0.2 }),
-      orange: make(C.orange, { roughness: 0.55 }),
-      bronze: make(C.bronze, { roughness: 0.4, metalness: 0.5 }),
+      orange: make(C.accent, { roughness: 0.55 }),
+      bronze: make(C.steelLight, { roughness: 0.4, metalness: 0.5 }),
       offwhite: make(C.offwhite),
       steel: make(C.steel, { roughness: 0.35, metalness: 0.65 }),
-      stone: make('#6d6a66', { roughness: 0.95 }),
+      stone: make('#6b7076', { roughness: 0.95 }),
       sand: make(C.sand, { roughness: 1 }),
-      gravel: make('#8a8177', { roughness: 1 }),
+      gravel: make('#868c93', { roughness: 1 }),
       glass: make('#33474f', { roughness: 0.18, metalness: 0.45 }),
     }
   }, [])

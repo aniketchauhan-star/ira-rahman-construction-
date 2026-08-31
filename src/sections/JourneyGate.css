@@ -14,8 +14,8 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(rgba(247, 244, 237, 0.032) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(247, 244, 237, 0.032) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(238, 241, 245, 0.032) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(238, 241, 245, 0.032) 1px, transparent 1px);
   background-size: 74px 74px;
   mask-image: radial-gradient(circle at 50% 46%, #000 6%, transparent 68%);
   -webkit-mask-image: radial-gradient(circle at 50% 46%, #000 6%, transparent 68%);
@@ -29,7 +29,7 @@
   height: clamp(52px, 7vw, 78px);
   margin-top: clamp(-39px, -3.5vw, -26px);
   background: var(--offwhite);
-  border-block: 2px solid rgba(32, 34, 36, 0.24);
+  border-block: 2px solid rgba(20, 23, 26, 0.24);
   z-index: 2;
   will-change: transform;
 }
@@ -47,7 +47,7 @@
   inset: 0;
   background: repeating-linear-gradient(
     -45deg,
-    var(--orange) 0 26px,
+    var(--accent) 0 26px,
     var(--offwhite) 26px 52px
   );
   opacity: 0.94;
@@ -75,7 +75,7 @@
   width: min(180px, 40vw);
   height: 2px;
   margin: 30px auto 0;
-  background: var(--orange);
+  background: var(--accent);
   transform: scaleX(0);
 }
 
@@ -92,7 +92,7 @@
   }
 
   .gate__hazard {
-    background: repeating-linear-gradient(-45deg, var(--orange) 0 18px, var(--offwhite) 18px 36px);
+    background: repeating-linear-gradient(-45deg, var(--accent) 0 18px, var(--offwhite) 18px 36px);
   }
 
   .gate__rule {

@@ -1,4 +1,4 @@
-# IRHA RAHMAN CONSTRUCTION COMPANY
+# IRHA CONSTRUCTION COMPANY
 
 An interactive, scroll-driven website for a construction, civil-work,
 building-material and infrastructure company.
@@ -35,7 +35,7 @@ Everything is file-based. Drop images into `public/assets/` using the
 filenames listed in **[public/assets/README.md](public/assets/README.md)** and
 they appear immediately — no code changes.
 
-Until an image exists, the site renders a designed graphite/cream placeholder
+Until an image exists, the site renders a designed graphite placeholder
 that names the folder the file belongs in, so you always know what is still
 missing. It never shows a broken-image icon.
 
@@ -55,7 +55,7 @@ from these files and never hard-code content.
 | `src/data/materials.js` | Materials section |
 | `src/data/machinery.js` | Machinery showcase |
 | `src/data/gallery.js` | "On Site" horizontal gallery |
-| `src/data/whyus.js` | "Why IRHA Rahman?" reasons |
+| `src/data/whyus.js` | "Why IRHA?" reasons |
 
 ### Contact details
 
@@ -127,22 +127,63 @@ losing the machine.
 
 ## Brand system
 
-Derived from the company logo and defined once in `src/styles/global.css`:
+The palette is sampled from the company logo rather than invented. The mark is
+polished steel: mean saturation **0.07** with a consistent cool cast (hue ~215°).
+Measured values — specular `#FDFEFF`, bright chrome `#C4C9D1`, mid chrome
+`#72767E`, deep field `#020202` — become the ramp, defined once in
+`src/styles/global.css`:
 
 | Token | Value | Used for |
 | --- | --- | --- |
-| `--graphite` | `#202224` | Dominant dark surface |
-| `--orange` | `#E86A00` | Actions, active states, construction highlights only |
-| `--bronze` | `#B88A44` | Premium accents, eyebrows, hairlines |
-| `--offwhite` | `#F7F4ED` | Dominant light surface |
-| `--concrete` | `#777A7C` | Secondary text |
-| `--dark` | `#111315` | Deep background |
+| `--specular` | `#FDFEFF` | Brightest highlight |
+| `--platinum` | `#EEF1F5` | Light text, accent on dark ground |
+| `--silver` | `#C4C9D1` | Bright chrome faces |
+| `--steel` | `#72767E` | Mid chrome, secondary text |
+| `--graphite` | `#14171A` | Dominant dark surface |
+| `--dark` | `#0A0B0D` | Deep background |
+| `--offwhite` | `#F2F3F5` | Dominant light surface (cooled to match) |
+
+### The accent flips with the surface
+
+The identity is monochrome, so emphasis comes from **contrast, not hue**. One
+set of tokens serves both grounds:
+
+| Token | On dark | On light |
+| --- | --- | --- |
+| `--accent` | `--platinum` | `--graphite` |
+| `--accent-2` | `--steel-light` | `--steel` |
+| `--on-accent` | `--black` | `--platinum` |
+
+`.section--light` redeclares them, so a component written once works on either
+ground. A dark island inside a light section (a project tile, a hovered service
+panel) adds `.on-dark` — or redeclares them locally — to take the bright end
+back.
 
 Headings use **Barlow Condensed**, body copy uses **Inter**.
 
-The logo artwork is transparent with graphite linework, so on dark surfaces
-`Logo.jsx` places it on an off-white disc. The artwork itself is never
-recoloured, cropped or stretched — its aspect ratio is locked at 1:1.
+### Logo
+
+The artwork is chrome on a transparent background, so it needs dark ground.
+Two files, both generated from the supplied original and never recoloured or
+stretched:
+
+| File | Ratio | Used in |
+| --- | --- | --- |
+| `irha-construction-logo.png` | 3:2 | Loader, footer — the full lockup |
+| `irha-construction-mark-sm.png` | 2.32:1 | Navbar — buildings only |
+| `favicon.png` | 1:1 | Browser tab |
+
+The lockup's own type turns to mush below ~90px tall, so anywhere small uses
+the cropped building mark and lets real type carry the name. `surface="plate"`
+seats the mark on a dark panel for use on light ground.
+
+### Metals in the 3D scenes
+
+A metallic material has almost no diffuse response — with nothing to reflect it
+renders black. `three/ChromeEnvironment.jsx` bakes a small studio cubemap from
+in-scene geometry (graded shell, overhead softbox, two side cards) at
+`frames={1}`, so it costs nothing per frame and needs no HDR file or network
+request. Bodywork additionally raises `envMapIntensity`.
 
 ---
 

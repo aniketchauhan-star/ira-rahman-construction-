@@ -65,10 +65,10 @@ export default function Loader({ onComplete }) {
 
   return (
     <div ref={rootRef} className="loader" role="status" aria-live="polite">
-      <span className="sr-only">Loading IRHA RAHMAN Construction Company</span>
+      <span className="sr-only">Loading IRHA Construction Company</span>
       <div className="loader__inner">
         <div className="loader__logo">
-          <Logo size={96} surface="plate" />
+          <Logo height={190} variant="full" />
         </div>
 
         <div className="loader__bar" aria-hidden="true">

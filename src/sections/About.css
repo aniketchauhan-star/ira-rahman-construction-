@@ -20,7 +20,7 @@
 /* ---------- Key points ---------- */
 .about__points {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 26px 34px;
   margin-top: clamp(34px, 4vw, 52px);
   padding-top: clamp(30px, 3.4vw, 44px);
@@ -42,7 +42,7 @@
 .about__point-num {
   font-size: 0.68rem;
   letter-spacing: 0.18em;
-  color: var(--orange);
+  color: var(--accent);
 }
 
 .about__point dd {
@@ -66,7 +66,7 @@
   bottom: 0;
   width: 1px;
   height: 72%;
-  background: linear-gradient(to top, var(--orange), rgba(184, 138, 68, 0.1));
+  background: linear-gradient(to top, var(--accent), rgba(var(--accent-2-rgb), 0.1));
 }
 
 .about__frame-line::after {
@@ -76,7 +76,7 @@
   bottom: 0;
   width: 58%;
   height: 1px;
-  background: linear-gradient(to right, var(--orange), rgba(184, 138, 68, 0.1));
+  background: linear-gradient(to right, var(--accent), rgba(var(--accent-2-rgb), 0.1));
 }
 
 /* offset graphite plate for depth */
@@ -86,7 +86,7 @@
   bottom: 12px;
   width: calc(100% - 46px);
   height: calc(100% - 46px);
-  border: 1px solid rgba(184, 138, 68, 0.42);
+  border: 1px solid rgba(var(--accent-2-rgb), 0.42);
 }
 
 .about__image-clip {
@@ -126,7 +126,7 @@
   font-size: 0.66rem;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--bronze);
+  color: var(--accent-2);
 }
 
 /* ---------- Responsive ---------- */
@@ -213,7 +213,7 @@
     left: 0;
     width: 58px;
     height: 2px;
-    background: var(--orange);
+    background: var(--accent);
   }
 
   .about__lead {
@@ -226,7 +226,7 @@
   }
 
   .about__points {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0;
     margin-top: 32px;
     padding-top: 0;

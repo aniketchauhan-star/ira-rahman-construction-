@@ -27,7 +27,7 @@
   left: 0;
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, var(--orange) 0 14%, rgba(32, 34, 36, 0.18) 14%);
+  background: linear-gradient(90deg, var(--accent) 0 14%, rgba(20, 23, 26, 0.18) 14%);
   transform: scaleX(0);
   transform-origin: left center;
 }
@@ -39,13 +39,13 @@
   left: 0;
   width: 100%;
   height: 1px;
-  background: rgba(32, 34, 36, 0.14);
+  background: rgba(20, 23, 26, 0.14);
 }
 
 .why__num {
   font-size: 0.86rem;
   letter-spacing: 0.2em;
-  color: var(--bronze);
+  color: var(--accent-2);
 }
 
 .why__word {
@@ -60,7 +60,7 @@
 }
 
 .why__row:hover .why__word {
-  color: var(--orange);
+  color: var(--accent);
 }
 
 .why__text {
@@ -95,7 +95,7 @@
   }
 
   .why__row {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 8px;
     padding-block: 22px;
   }
@@ -114,6 +114,6 @@
   }
 
   .why__draw {
-    background: linear-gradient(90deg, var(--orange) 0 22%, rgba(32, 34, 36, 0.18) 22%);
+    background: linear-gradient(90deg, var(--accent) 0 22%, rgba(20, 23, 26, 0.18) 22%);
   }
 }

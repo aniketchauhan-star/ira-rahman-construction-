@@ -95,7 +95,7 @@ export default function ConstructionRoad({ quality = 'high' }) {
   const materials = useMemo(
     () => ({
       ground: new THREE.MeshStandardMaterial({
-        color: '#2c2922',
+        color: '#22262a',
         roughness: 1,
         metalness: 0,
         transparent: true,
@@ -103,12 +103,12 @@ export default function ConstructionRoad({ quality = 'high' }) {
         depthWrite: false,
       }),
       asphalt: new THREE.MeshStandardMaterial({ color: C.asphalt, roughness: 0.95, metalness: 0.04 }),
-      edge: new THREE.MeshStandardMaterial({ color: C.orange, roughness: 0.7 }),
-      dash: new THREE.MeshStandardMaterial({ color: '#e6e0d2', roughness: 0.8 }),
-      cone: new THREE.MeshStandardMaterial({ color: C.orange, roughness: 0.65 }),
+      edge: new THREE.MeshStandardMaterial({ color: C.accent, roughness: 0.7 }),
+      dash: new THREE.MeshStandardMaterial({ color: '#dfe3e8', roughness: 0.8 }),
+      cone: new THREE.MeshStandardMaterial({ color: C.accent, roughness: 0.65 }),
       coneBase: new THREE.MeshStandardMaterial({ color: '#1a1c1e', roughness: 0.9 }),
       barrier: new THREE.MeshStandardMaterial({ color: C.offwhite, roughness: 0.8 }),
-      barrierStripe: new THREE.MeshStandardMaterial({ color: C.orange, roughness: 0.7 }),
+      barrierStripe: new THREE.MeshStandardMaterial({ color: C.accent, roughness: 0.7 }),
       kerb: new THREE.MeshStandardMaterial({ color: C.concrete, roughness: 0.92 }),
     }),
     []

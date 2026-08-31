@@ -22,7 +22,7 @@ export default function About() {
           </SectionTitle>
 
           <p className="lead about__lead">
-            IRHA RAHMAN Construction Company works across building construction, civil
+            IRHA Construction Company works across building construction, civil
             infrastructure and construction materials. We take on structural work, earthwork and
             complete project execution — and we run each site with the same discipline, whatever its
             scale.
@@ -58,7 +58,7 @@ export default function About() {
             <ImageReveal
               className="about__image"
               src="/assets/site/site-01.jpg"
-              alt="IRHA RAHMAN Construction Company site works in progress"
+              alt="IRHA Construction Company site works in progress"
               folderLabel="/assets/site/"
               kindLabel="Site Image"
             />

@@ -1,75 +1,90 @@
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   line-height: 1;
 }
 
-.logo__disc {
+.logo__frame {
   position: relative;
-  display: grid;
-  place-items: center;
-  width: var(--logo-size);
-  height: var(--logo-size);
+  display: block;
   flex: 0 0 auto;
-  border-radius: 50%;
+  height: var(--logo-h);
+  aspect-ratio: var(--logo-ratio);
   transition: transform var(--t-ui) var(--ease-out);
-}
-
-/* Off-white disc keeps the graphite artwork legible on dark surfaces. */
-.logo--plate .logo__disc {
-  background: var(--offwhite);
-  box-shadow: 0 0 0 1px rgba(184, 138, 68, 0.35);
-}
-
-.logo--plate .logo__img {
-  width: 88%;
-  height: 88%;
 }
 
 .logo__img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* never distort the logo */
-  aspect-ratio: 1 / 1;
+  object-fit: contain; /* never distort the artwork */
 }
 
+/* ---------------------------------------------------------------
+   Plate — for light sections.
+   The mark is chrome on transparency; on off-white it would vanish,
+   so it sits on a dark panel with a thin steel edge and a soft
+   inner glow, echoing the lighting baked into the logo itself.
+--------------------------------------------------------------- */
+.logo--plate .logo__frame {
+  padding: 0.28em 0.5em;
+  height: calc(var(--logo-h) + 0.5em);
+  aspect-ratio: auto;
+  background: radial-gradient(120% 140% at 50% 30%, #1c2126 0%, var(--black) 100%);
+  border: 1px solid rgba(154, 160, 168, 0.28);
+  border-radius: 2px;
+  box-shadow: inset 0 1px 0 rgba(238, 241, 245, 0.06);
+}
+
+.logo--plate .logo__img {
+  height: var(--logo-h);
+  width: auto;
+}
+
+/* ---------------------------------------------------------------
+   Wordmark
+--------------------------------------------------------------- */
 .logo__wordmark {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 4px;
 }
 
 .logo__name {
   font-family: var(--font-head);
   font-weight: 700;
-  font-size: 1.06rem;
-  letter-spacing: 0.11em;
+  font-size: 1.08rem;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
 .logo__sub {
   font-family: var(--font-body);
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   font-weight: 500;
-  letter-spacing: 0.26em;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--bronze);
+  color: var(--steel-light);
   white-space: nowrap;
 }
 
-a:hover .logo__disc,
-button:hover .logo__disc {
-  transform: scale(1.06);
+a:hover .logo__frame,
+button:hover .logo__frame {
+  transform: scale(1.04);
 }
 
 @media (max-width: 560px) {
+  .logo {
+    gap: 10px;
+  }
+
   .logo__sub {
     display: none;
   }
+
   .logo__name {
-    font-size: 0.94rem;
-    letter-spacing: 0.08em;
+    font-size: 0.92rem;
+    letter-spacing: 0.09em;
   }
 }

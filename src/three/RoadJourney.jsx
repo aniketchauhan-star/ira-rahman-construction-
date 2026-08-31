@@ -13,6 +13,7 @@ import { useReducedMotion } from '../hooks/useReducedMotion'
 import { useIsMobile } from '../hooks/useMediaQuery'
 import { useWebGL } from '../hooks/useWebGL'
 import './RoadJourney.css'
+import ChromeEnvironment from './ChromeEnvironment'
 
 /* ---------------------------------------------------------------
    Camera
@@ -161,6 +162,7 @@ export default function RoadJourney() {
         shadows={false}
       >
         <BandCamera viewHeight={isMobile ? 4.3 : 4.9} groundLine={0.22} />
+        <ChromeEnvironment resolution={128} />
         <Lights intensity={0.88} />
         <fog attach="fog" args={['#15181a', 46, 90]} />
         <JourneyRig quality={quality} />

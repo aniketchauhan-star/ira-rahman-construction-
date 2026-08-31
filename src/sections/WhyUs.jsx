@@ -62,7 +62,7 @@ export default function WhyUs() {
     <section ref={rootRef} className="section section--light why">
       <div className="shell">
         <SectionTitle eyebrow="The difference" size="h1" className="why__title">
-          Why IRHA Rahman?
+          Why IRHA?
         </SectionTitle>
 
         <ol className="why__list">

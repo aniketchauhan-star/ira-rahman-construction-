@@ -26,12 +26,12 @@ export default function Footer() {
   return (
     <footer className="foot" id="footer">
       <span className="foot__ghost" aria-hidden="true">
-        IRHA RAHMAN
+        IRHA CONSTRUCTION
       </span>
 
       <div className="shell foot__inner">
         <div className="foot__brand">
-          <Logo size={64} surface="plate" withWordmark />
+          <Logo height={96} variant="full" />
           <p className="foot__tag">
             Building construction, civil infrastructure and construction materials — delivered with
             strength, precision and reliability.

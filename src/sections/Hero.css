@@ -23,8 +23,8 @@
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(100deg, rgba(17, 19, 21, 0.94) 0%, rgba(17, 19, 21, 0.72) 34%, rgba(17, 19, 21, 0.1) 66%),
-    linear-gradient(to top, rgba(17, 19, 21, 0.9) 0%, transparent 42%);
+    linear-gradient(100deg, rgba(10, 11, 13, 0.94) 0%, rgba(10, 11, 13, 0.72) 34%, rgba(10, 11, 13, 0.1) 66%),
+    linear-gradient(to top, rgba(10, 11, 13, 0.9) 0%, transparent 42%);
   pointer-events: none;
 }
 
@@ -36,12 +36,12 @@
 
 .hero__eyebrow {
   letter-spacing: 0.3em;
-  color: var(--bronze);
+  color: var(--accent-2);
 }
 
 .hero__eyebrow span {
   margin-inline: 6px;
-  color: var(--orange);
+  color: var(--accent);
 }
 
 .hero__title {
@@ -56,14 +56,14 @@
   width: min(220px, 42vw);
   height: 2px;
   margin: 28px 0 24px;
-  background: linear-gradient(90deg, var(--orange), rgba(184, 138, 68, 0.15));
+  background: linear-gradient(90deg, var(--accent), rgba(var(--accent-2-rgb), 0.15));
   transform: scaleX(0);
   transform-origin: left center;
 }
 
 .hero__copy {
   max-width: 52ch;
-  color: rgba(247, 244, 237, 0.76);
+  color: rgba(238, 241, 245, 0.76);
 }
 
 .hero__actions {
@@ -98,7 +98,7 @@
 }
 
 .hero__cue:hover .hero__cue-label {
-  color: var(--orange);
+  color: var(--accent);
 }
 
 .hero__cue-road {
@@ -106,8 +106,8 @@
   display: block;
   width: 148px;
   height: 16px;
-  border-top: 1px solid rgba(247, 244, 237, 0.22);
-  border-bottom: 2px solid var(--orange);
+  border-top: 1px solid rgba(238, 241, 245, 0.22);
+  border-bottom: 2px solid var(--accent);
   background: rgba(27, 30, 32, 0.7);
 }
 
@@ -120,7 +120,7 @@
   margin-top: -0.75px;
   background: repeating-linear-gradient(
     to right,
-    rgba(247, 244, 237, 0.55) 0 9px,
+    rgba(238, 241, 245, 0.55) 0 9px,
     transparent 9px 19px
   );
 }
@@ -132,7 +132,7 @@
   left: 0;
   width: 17px;
   height: 10px;
-  background: var(--orange);
+  background: var(--accent);
   border-radius: 1px;
   animation: cueDrive 3.4s var(--ease-inout) infinite;
 }
@@ -154,7 +154,7 @@
   top: -4px;
   width: 7px;
   height: 4px;
-  background: var(--bronze);
+  background: var(--accent-2);
 }
 
 @keyframes cueDrive {
@@ -175,7 +175,7 @@
 @media (max-width: 1023px) {
   .hero__scrim {
     background:
-      linear-gradient(to top, rgba(17, 19, 21, 0.96) 0%, rgba(17, 19, 21, 0.6) 46%, rgba(17, 19, 21, 0.28) 100%);
+      linear-gradient(to top, rgba(10, 11, 13, 0.96) 0%, rgba(10, 11, 13, 0.6) 46%, rgba(10, 11, 13, 0.28) 100%);
   }
 }
 

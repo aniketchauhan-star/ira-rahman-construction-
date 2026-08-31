@@ -1,37 +1,57 @@
 /* ==========================================================================
-   IRHA RAHMAN CONSTRUCTION COMPANY — GLOBAL SYSTEM
+   IRHA CONSTRUCTION COMPANY — GLOBAL SYSTEM
    Brand identity derived from the company logo:
-   graphite • burnt construction orange • warm bronze • off-white • concrete
+   polished steel • graphite • silver • platinum • near-black
    ========================================================================== */
 
 :root {
-  /* ---- Brand palette ---- */
-  --graphite: #202224;
-  --orange: #e86a00;
-  --orange-deep: #c85a00;
-  --bronze: #b88a44;
-  --bronze-soft: #cba767;
-  --offwhite: #f7f4ed;
-  --concrete: #777a7c;
-  --dark: #111315;
+  /* ---- Chrome identity, sampled from the company logo ----
+     The mark is polished steel: mean saturation 0.07 with a
+     consistent cool cast (hue ~215deg). Every value below is taken
+     from the artwork itself rather than invented. */
+  --specular: #fdfeff;   /* brightest highlight in the mark */
+  --platinum: #eef1f5;
+  --silver: #c4c9d1;     /* mean of the bright chrome faces */
+  --steel-light: #9aa0a8;
+  --steel: #72767e;      /* mean of the mid-tone chrome */
+  --steel-dark: #4a4e54;
+  --graphite-2: #1e2226;
+  --graphite: #14171a;
+  --dark: #0a0b0d;
+  --black: #050507;      /* the mark's deep field */
 
-  /* ---- Derived surfaces ---- */
+  --offwhite: #f2f3f5;   /* cooled to sit under a steel identity */
+  --offwhite-2: #e6e8ec;
+
+  /* ---- Surfaces ---- */
   --surface-light: var(--offwhite);
-  --surface-light-2: #efeae0;
+  --surface-light-2: var(--offwhite-2);
   --surface-dark: var(--dark);
-  --surface-dark-2: #1a1d1f;
+  --surface-dark-2: var(--graphite);
   --surface-graphite: var(--graphite);
 
   /* ---- Text ---- */
-  --text-dark: #16181a;
-  --text-muted: #5f6265;
-  --text-light: var(--offwhite);
-  --text-light-muted: #a9aaa8;
+  --text-dark: #101215;
+  --text-muted: #5b6066;
+  --text-light: var(--platinum);
+  --text-light-muted: #a2a8b0;
 
   /* ---- Lines ---- */
-  --line-dark: rgba(32, 34, 36, 0.14);
-  --line-light: rgba(247, 244, 237, 0.14);
-  --line-bronze: rgba(184, 138, 68, 0.5);
+  --line-dark: rgba(16, 18, 21, 0.14);
+  --line-light: rgba(238, 241, 245, 0.14);
+
+  /* ---- Accent -------------------------------------------------
+     The identity is monochrome, so emphasis comes from contrast
+     rather than hue: the accent is the brightest tone on dark
+     surfaces and the darkest on light ones. Sections re-declare
+     these, so one rule serves both without per-surface overrides
+     scattered through the components. */
+  --accent: var(--platinum);
+  --accent-strong: var(--specular);
+  --accent-2: var(--steel-light);
+  --on-accent: var(--black);
+  --accent-rgb: 238, 241, 245;
+  --accent-2-rgb: 154, 160, 168;
 
   /* ---- Type ---- */
   --font-head: 'Barlow Condensed', 'Oswald', 'Arial Narrow', sans-serif;
@@ -43,8 +63,6 @@
   --section-y: clamp(88px, 11vw, 168px);
   --nav-h: 78px;
   --road-h: clamp(94px, 11vh, 138px);
-  /* Height of the 3D band's canvas — taller than --road-h because
-     scenery rises above the road surface into the masked area. */
   --road-band-h: clamp(178px, 24vh, 286px);
 
   /* ---- Motion ---- */
@@ -54,9 +72,32 @@
   --t-ui-slow: 460ms;
 
   /* ---- Elevation ---- */
-  --shadow-sm: 0 2px 10px rgba(17, 19, 21, 0.08);
-  --shadow-md: 0 14px 40px -18px rgba(17, 19, 21, 0.45);
-  --shadow-lg: 0 30px 70px -30px rgba(17, 19, 21, 0.6);
+  --shadow-sm: 0 2px 10px rgba(5, 5, 7, 0.1);
+  --shadow-md: 0 14px 40px -18px rgba(5, 5, 7, 0.5);
+  --shadow-lg: 0 30px 70px -30px rgba(5, 5, 7, 0.66);
+}
+
+/* On light ground the accent flips to the dark end of the same
+   ramp — still the logo's palette, still the strongest contrast. */
+.section--light,
+.on-light {
+  --accent: var(--graphite);
+  --accent-strong: var(--black);
+  --accent-2: var(--steel);
+  --on-accent: var(--platinum);
+  --accent-rgb: 20, 23, 26;
+  --accent-2-rgb: 114, 118, 126;
+}
+
+/* Dark islands inside a light section (project tiles, inverted
+   cards) take the bright accent back. */
+.on-dark {
+  --accent: var(--platinum);
+  --accent-strong: var(--specular);
+  --accent-2: var(--steel-light);
+  --on-accent: var(--black);
+  --accent-rgb: 238, 241, 245;
+  --accent-2-rgb: 154, 160, 168;
 }
 
 /* ---------- Reset ---------- */
@@ -114,6 +155,9 @@ select,
 textarea {
   font: inherit;
   color: inherit;
+  /* Form controls carry an intrinsic minimum width that otherwise
+     forces grid and flex tracks wider than their container. */
+  min-width: 0;
 }
 
 button {
@@ -150,7 +194,7 @@ figure {
 }
 
 :focus-visible {
-  outline: 2px solid var(--orange);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -161,8 +205,8 @@ figure {
   left: 10px;
   z-index: 9999;
   padding: 12px 20px;
-  background: var(--orange);
-  color: #fff;
+  background: var(--accent);
+  color: var(--on-accent);
   font-family: var(--font-head);
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -211,7 +255,7 @@ figure {
   font-size: clamp(0.72rem, 1vw, 0.84rem);
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--bronze);
+  color: var(--accent-2);
 }
 
 .lead {
@@ -227,7 +271,7 @@ figure {
 }
 
 .accent {
-  color: var(--orange);
+  color: var(--accent);
 }
 
 .mono-num {
@@ -281,7 +325,7 @@ figure {
   height: 2px;
   width: min(160px, 34vw);
   margin-top: 26px;
-  background: var(--orange);
+  background: var(--accent);
   transform: scaleX(0);
   transform-origin: left center;
 }
@@ -410,7 +454,7 @@ figure {
   /* Every tappable row gets a real target. */
   a,
   button {
-    -webkit-tap-highlight-color: rgba(232, 106, 0, 0.16);
+    -webkit-tap-highlight-color: rgba(var(--accent-2-rgb), 0.18);
   }
 }
 

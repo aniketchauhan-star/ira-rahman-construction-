@@ -12,8 +12,8 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(rgba(247, 244, 237, 0.028) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(247, 244, 237, 0.028) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(238, 241, 245, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(238, 241, 245, 0.028) 1px, transparent 1px);
   background-size: 60px 60px;
   mask-image: radial-gradient(circle at 50% 50%, #000 10%, transparent 70%);
   -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 10%, transparent 70%);
@@ -39,14 +39,14 @@
 .loader__track {
   position: absolute;
   inset: 0;
-  background: rgba(247, 244, 237, 0.16);
+  background: rgba(238, 241, 245, 0.16);
   transform-origin: left center;
 }
 
 .loader__fill {
   position: absolute;
   inset: 0;
-  background: var(--orange);
+  background: var(--accent);
   transform-origin: left center;
 }
 
@@ -57,8 +57,8 @@
   height: 10px;
   margin-top: -5px;
   margin-left: -5px;
-  background: var(--orange);
-  box-shadow: 0 0 0 4px rgba(232, 106, 0, 0.18);
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.18);
 }
 
 .loader__word {

@@ -23,7 +23,7 @@
   font-size: 0.72rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: var(--concrete);
+  color: var(--steel);
   padding-bottom: 6px;
 }
 
@@ -91,7 +91,7 @@
 .shot__num {
   font-size: 0.66rem;
   letter-spacing: 0.18em;
-  color: var(--orange);
+  color: var(--accent);
 }
 
 /* ---------- End card ---------- */
@@ -108,7 +108,7 @@
   display: block;
   width: 60px;
   height: 1px;
-  background: var(--bronze);
+  background: var(--accent-2);
 }
 
 .gallery__end-text {
@@ -118,7 +118,7 @@
   line-height: 1.05;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--concrete);
+  color: var(--steel);
 }
 
 /* ---------- Native scrolling (mobile / reduced motion) ---------- */
@@ -170,7 +170,7 @@
     content: '';
     width: 26px;
     height: 1px;
-    background: var(--orange);
+    background: var(--accent);
   }
 
   /* Room for the caption inside the scroll container, which clips

@@ -8,6 +8,7 @@ import { useIsMobile } from '../hooks/useMediaQuery'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { useWebGL } from '../hooks/useWebGL'
 import './HeroScene.css'
+import ChromeEnvironment from './ChromeEnvironment'
 
 /* ---------- Shared materials ---------- */
 function useHeroMaterials() {
@@ -15,11 +16,11 @@ function useHeroMaterials() {
     const make = (color, o = {}) =>
       new THREE.MeshStandardMaterial({ color, roughness: 0.82, metalness: 0.07, ...o })
     return {
-      concrete: make('#565248'),
-      concreteDark: make('#3b3833'),
+      concrete: make('#565b61'),
+      concreteDark: make('#33383d'),
       graphite: make(C.graphite, { roughness: 0.6, metalness: 0.22 }),
-      orange: make(C.orange, { roughness: 0.55 }),
-      bronze: make(C.bronze, { roughness: 0.4, metalness: 0.5 }),
+      orange: make(C.accent, { roughness: 0.55 }),
+      bronze: make(C.steelLight, { roughness: 0.4, metalness: 0.5 }),
       steel: make(C.steel, { roughness: 0.34, metalness: 0.62 }),
       far: make('#22262a', { roughness: 1 }),
       asphalt: make(C.asphalt, { roughness: 0.98 }),
@@ -150,7 +151,7 @@ function Motes({ count = 90 }) {
     const geometry = new THREE.BufferGeometry()
     geometry.setAttribute('position', new THREE.BufferAttribute(pos, 3))
     const material = new THREE.PointsMaterial({
-      color: '#d8cdb4',
+      color: '#ccd3db',
       size: 0.055,
       sizeAttenuation: true,
       transparent: true,
@@ -191,7 +192,7 @@ function Ground({ m }) {
           rotation={[-Math.PI / 2, 0, 0.06]}
         >
           <planeGeometry args={[1.3, 0.11]} />
-          <meshBasicMaterial color="#cdc6b6" />
+          <meshBasicMaterial color="#c2c8d0" />
         </mesh>
       ))}
     </group>
@@ -271,7 +272,8 @@ export default function HeroScene({ active = true }) {
           camera.lookAt(0, 0.1, -4)
         }}
       >
-        <fog attach="fog" args={['#111315', 12, 40]} />
+        <fog attach="fog" args={['#0a0b0d', 12, 40]} />
+        <ChromeEnvironment resolution={128} />
         <Lights intensity={0.92} />
 
         <HeroRig reduced={reduced} mobile={mobile}>

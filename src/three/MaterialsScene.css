@@ -17,8 +17,8 @@
 
 .mat-scene--fallback {
   background:
-    radial-gradient(60% 100% at 50% 100%, rgba(184, 138, 68, 0.14), transparent 70%),
-    linear-gradient(to top, rgba(32, 34, 36, 0.9), transparent);
+    radial-gradient(60% 100% at 50% 100%, rgba(var(--accent-2-rgb), 0.14), transparent 70%),
+    linear-gradient(to top, rgba(20, 23, 26, 0.9), transparent);
 }
 
 @media (max-width: 767px) {
@@ -35,7 +35,7 @@
   width: min(520px, 70%);
   height: 10px;
   transform: translateX(-50%);
-  background: var(--orange);
+  background: var(--accent);
   opacity: 0.55;
 }
 

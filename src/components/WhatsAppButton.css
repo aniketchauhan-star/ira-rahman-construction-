@@ -11,21 +11,21 @@
   background: var(--graphite);
   color: var(--offwhite);
   box-shadow: var(--shadow-md);
-  border: 1px solid rgba(184, 138, 68, 0.4);
+  border: 1px solid rgba(var(--accent-2-rgb), 0.4);
   transition: transform var(--t-ui) var(--ease-out), background-color var(--t-ui) var(--ease-out);
 }
 
 .wa:hover {
   transform: translateY(-3px);
-  background: var(--orange);
-  border-color: var(--orange);
-  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
 }
 
 .wa__pulse {
   position: absolute;
   inset: -1px;
-  border: 1px solid rgba(232, 106, 0, 0.5);
+  border: 1px solid rgba(var(--accent-rgb), 0.5);
   border-radius: 3px;
   animation: waPulse 2.8s var(--ease-out) infinite;
 }

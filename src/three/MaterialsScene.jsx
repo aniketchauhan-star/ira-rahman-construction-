@@ -8,6 +8,7 @@ import { useIsMobile } from '../hooks/useMediaQuery'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { useWebGL } from '../hooks/useWebGL'
 import './MaterialsScene.css'
+import ChromeEnvironment from './ChromeEnvironment'
 
 /**
  * RAW MATERIAL → STRONG FOUNDATION
@@ -83,7 +84,7 @@ function Foundation({ quality }) {
 
   // Per-instance material tones — stone, gravel, aggregate, sand.
   const tones = useMemo(
-    () => ['#6d6a66', '#8a8177', '#5f5c59', '#b88a44', '#777a7c'].map((h) => new THREE.Color(h)),
+    () => ['#6b7076', '#868c93', '#5a5f65', '#9aa0a8', '#72767e'].map((h) => new THREE.Color(h)),
     []
   )
 
@@ -139,13 +140,13 @@ function Foundation({ quality }) {
       {/* the finished foundation slab */}
       <mesh ref={slabRef} position={[0, 0.52, 0]} scale={[1, 0.001, 1]}>
         <boxGeometry args={[GRID_X * (BLOCK + 0.035) + 0.24, 0.14, GRID_Z * (BLOCK + 0.035) + 0.24]} />
-        <meshStandardMaterial color="#9a968d" roughness={0.86} transparent opacity={0} />
+        <meshStandardMaterial color="#94989e" roughness={0.86} transparent opacity={0} />
       </mesh>
 
       {/* setting-out line */}
       <mesh position={[0, 0.601, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <planeGeometry args={[GRID_X * (BLOCK + 0.035) + 0.24, 0.03]} />
-        <meshBasicMaterial color={C.orange} transparent opacity={0.85} />
+        <meshBasicMaterial color={C.accent} transparent opacity={0.85} />
       </mesh>
 
       {/* ground */}
@@ -179,7 +180,8 @@ export default function MaterialsScene({ active = true }) {
           camera.lookAt(0, 0.4, 0)
         }}
       >
-        <fog attach="fog" args={['#202224', 9, 22]} />
+        <fog attach="fog" args={['#14171a', 9, 22]} />
+        <ChromeEnvironment resolution={64} />
         <Lights intensity={0.95} />
         <Foundation quality={mobile ? 'low' : 'high'} />
       </Canvas>

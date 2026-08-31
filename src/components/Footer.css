@@ -14,11 +14,13 @@
   transform: translateX(-50%);
   font-family: var(--font-head);
   font-weight: 700;
-  font-size: clamp(4rem, 15.5vw, 15rem);
+  /* Sized for the full company name — the previous value was set for
+     a much shorter wordmark and clipped this one mid-letter. */
+  font-size: clamp(2.4rem, 10.6vw, 10.5rem);
   line-height: 0.8;
   letter-spacing: 0.01em;
   white-space: nowrap;
-  color: rgba(247, 244, 237, 0.038);
+  color: rgba(238, 241, 245, 0.038);
   pointer-events: none;
   user-select: none;
 }
@@ -51,16 +53,16 @@
   place-items: center;
   width: 40px;
   height: 40px;
-  border: 1px solid rgba(247, 244, 237, 0.18);
+  border: 1px solid rgba(238, 241, 245, 0.18);
   border-radius: 2px;
   color: var(--text-light-muted);
   transition: all var(--t-ui) var(--ease-out);
 }
 
 .foot__socials a:hover {
-  color: #fff;
-  background: var(--orange);
-  border-color: var(--orange);
+  color: var(--on-accent);
+  background: var(--accent);
+  border-color: var(--accent);
   transform: translateY(-2px);
 }
 
@@ -70,7 +72,7 @@
   font-size: 0.76rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: var(--bronze);
+  color: var(--accent-2);
   margin-bottom: 22px;
 }
 
@@ -88,7 +90,7 @@
 }
 
 .foot__col a:hover {
-  color: var(--orange);
+  color: var(--accent);
 }
 
 .foot__contact {
@@ -106,7 +108,7 @@
   font-size: 0.68rem !important;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--concrete) !important;
+  color: var(--steel) !important;
 }
 
 .foot__base {
@@ -118,7 +120,7 @@
   gap: 16px;
   flex-wrap: wrap;
   padding-block: 26px;
-  border-top: 1px solid rgba(247, 244, 237, 0.1);
+  border-top: 1px solid rgba(238, 241, 245, 0.1);
   font-family: var(--font-head);
   font-size: 0.78rem;
   letter-spacing: 0.14em;
@@ -127,12 +129,12 @@
 }
 
 .foot__base-note {
-  color: var(--concrete);
+  color: var(--steel);
 }
 
 @media (max-width: 1023px) {
   .foot__inner {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 
   .foot__brand {
@@ -152,7 +154,7 @@
   }
 
   .foot__inner {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 32px 20px;
     padding-bottom: 40px;
   }
@@ -186,7 +188,7 @@
   }
 
   .foot__col li {
-    border-bottom: 1px solid rgba(247, 244, 237, 0.07);
+    border-bottom: 1px solid rgba(238, 241, 245, 0.07);
   }
 
   .foot__col li:last-child {
@@ -203,7 +205,7 @@
 
   .foot__contact li {
     padding-block: 12px;
-    border-bottom: 1px solid rgba(247, 244, 237, 0.07);
+    border-bottom: 1px solid rgba(238, 241, 245, 0.07);
   }
 
   .foot__contact li:last-child {
@@ -216,8 +218,8 @@
   }
 
   .foot__ghost {
-    font-size: 19vw;
-    bottom: -0.1em;
+    font-size: 13.5vw;
+    bottom: -0.08em;
   }
 
   .foot__base {

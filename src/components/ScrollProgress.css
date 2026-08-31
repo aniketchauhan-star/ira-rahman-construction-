@@ -17,12 +17,12 @@
   position: relative;
   width: 12px;
   flex: 0 0 12px;
-  background: #191c1e;
-  border-top: 2px solid var(--orange);
-  border-bottom: 2px solid var(--orange);
+  background: var(--graphite);
+  border-top: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
   border-radius: 1px;
-  box-shadow: inset 1px 0 0 rgba(247, 244, 237, 0.07),
-    inset -1px 0 0 rgba(247, 244, 237, 0.07);
+  box-shadow: inset 1px 0 0 rgba(238, 241, 245, 0.07),
+    inset -1px 0 0 rgba(238, 241, 245, 0.07);
 }
 
 .rail__dashes {
@@ -34,7 +34,7 @@
   margin-left: -0.75px;
   background: repeating-linear-gradient(
     to bottom,
-    rgba(247, 244, 237, 0.5) 0 7px,
+    rgba(238, 241, 245, 0.5) 0 7px,
     transparent 7px 15px
   );
 }
@@ -45,7 +45,7 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(184, 138, 68, 0.42), rgba(232, 106, 0, 0.34));
+  background: linear-gradient(to bottom, rgba(var(--accent-2-rgb), 0.42), rgba(var(--accent-rgb), 0.34));
   transform: scaleY(0);
   transform-origin: top center;
   will-change: transform;
@@ -66,9 +66,9 @@
 .rail__marker-body {
   width: 14px;
   height: 10px;
-  background: var(--orange);
+  background: var(--accent);
   border-radius: 1px;
-  box-shadow: 0 0 0 3px rgba(232, 106, 0, 0.16);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.16);
   position: relative;
 }
 
@@ -91,7 +91,7 @@
   top: -4px;
   width: 6px;
   height: 4px;
-  background: var(--bronze);
+  background: var(--accent-2);
   border-radius: 1px 1px 0 0;
 }
 
@@ -115,7 +115,7 @@
   width: 8px;
   height: 8px;
   flex: 0 0 8px;
-  background: var(--concrete);
+  background: var(--steel);
   opacity: 0.5;
   transform: rotate(45deg);
   transition: background-color var(--t-ui) var(--ease-out),
@@ -133,7 +133,7 @@
   text-transform: uppercase;
   color: var(--offwhite);
   background: rgba(26, 29, 31, 0.94);
-  border: 1px solid rgba(184, 138, 68, 0.4);
+  border: 1px solid rgba(var(--accent-2-rgb), 0.4);
   border-radius: 2px;
   opacity: 0;
   transform: translateX(6px);
@@ -144,20 +144,20 @@
 }
 
 .rail__node--done .rail__dot {
-  background: var(--bronze);
+  background: var(--accent-2);
   opacity: 1;
 }
 
 .rail__node--active .rail__dot {
-  background: var(--orange);
+  background: var(--accent);
   opacity: 1;
   transform: rotate(45deg) scale(1.5);
-  box-shadow: 0 0 0 4px rgba(232, 106, 0, 0.14);
+  box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.14);
 }
 
 .rail__node--active .rail__label {
-  color: var(--orange);
-  border-color: rgba(232, 106, 0, 0.65);
+  color: var(--accent);
+  border-color: rgba(var(--accent-rgb), 0.65);
 }
 
 .rail:hover .rail__label,
@@ -174,14 +174,14 @@
 /* On light sections the rail needs its own contrast — handled by
    a body-level class toggled from the active section. */
 body[data-surface='light'] .rail__track {
-  background: #d9d3c7;
-  box-shadow: inset 1px 0 0 rgba(32, 34, 36, 0.08), inset -1px 0 0 rgba(32, 34, 36, 0.08);
+  background: var(--offwhite-2);
+  box-shadow: inset 1px 0 0 rgba(20, 23, 26, 0.08), inset -1px 0 0 rgba(20, 23, 26, 0.08);
 }
 
 body[data-surface='light'] .rail__dashes {
   background: repeating-linear-gradient(
     to bottom,
-    rgba(32, 34, 36, 0.42) 0 7px,
+    rgba(20, 23, 26, 0.42) 0 7px,
     transparent 7px 15px
   );
 }

@@ -33,7 +33,7 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--orange);
+  background: var(--accent);
 }
 
 .cursor-ring {
@@ -41,7 +41,7 @@
   place-items: center;
   width: 30px;
   height: 30px;
-  border: 1px solid rgba(184, 138, 68, 0.85);
+  border: 1px solid rgba(var(--accent-2-rgb), 0.85);
   border-radius: 50%;
   background: transparent;
   transition: width 320ms var(--ease-out), height 320ms var(--ease-out),
@@ -55,7 +55,7 @@
   font-size: 0.62rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--on-accent);
   opacity: 0;
   transform: scale(0.7);
   transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out);
@@ -64,15 +64,15 @@
 .cursor-ring[data-mode='hover'] {
   width: 48px;
   height: 48px;
-  border-color: rgba(232, 106, 0, 0.9);
-  background: rgba(232, 106, 0, 0.1);
+  border-color: rgba(var(--accent-rgb), 0.9);
+  background: rgba(var(--accent-rgb), 0.1);
 }
 
 .cursor-ring[data-mode='view'] {
   width: 78px;
   height: 78px;
   border-color: transparent;
-  background: var(--orange);
+  background: var(--accent);
 }
 
 .cursor-ring[data-mode='view'] .cursor-ring__label {
@@ -82,7 +82,7 @@
 
 .cursor-ring.is-down {
   transform-origin: center;
-  border-color: var(--orange);
+  border-color: var(--accent);
 }
 
 @media (hover: none), (pointer: coarse) {

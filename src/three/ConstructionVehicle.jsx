@@ -110,7 +110,7 @@ function Tracks({ materials }) {
               ref={(el) => (sprocketsRef.current[si * 2 + i] = el)}
               position={[x, 0, 0]}
               rotation={[Math.PI / 2, 0, 0]}
-              material={materials.bronze}
+              material={materials.arm}
             >
               <cylinderGeometry args={[TRACK_R * 0.72, TRACK_R * 0.72, 0.26, 12]} />
             </mesh>
@@ -157,10 +157,10 @@ function Arm({ materials }) {
   return (
     <group ref={boomRef} position={[0.34, 0.66, 0]}>
       {/* boom */}
-      <mesh position={[0.44, 0, 0]} material={materials.bronze}>
+      <mesh position={[0.44, 0, 0]} material={materials.arm}>
         <boxGeometry args={[0.98, 0.15, 0.15]} />
       </mesh>
-      <mesh position={[0.44, 0.085, 0]} material={materials.bronzeDark}>
+      <mesh position={[0.44, 0.085, 0]} material={materials.armDark}>
         <boxGeometry args={[0.98, 0.022, 0.16]} />
       </mesh>
 
@@ -170,7 +170,7 @@ function Arm({ materials }) {
       </mesh>
 
       <group ref={armRef} position={[0.92, 0, 0]}>
-        <mesh position={[0.3, 0, 0]} material={materials.bronze}>
+        <mesh position={[0.3, 0, 0]} material={materials.arm}>
           <boxGeometry args={[0.66, 0.12, 0.12]} />
         </mesh>
 
@@ -197,20 +197,36 @@ export default function ConstructionVehicle({ quality = 'high' }) {
   const bounce = useRef(0)
 
   const materials = useMemo(() => {
+    /* envMapIntensity is what makes the metals read: a metallic
+       material has no diffuse term, so the baked studio environment
+       is its only light source. */
     const make = (color, opts = {}) =>
-      new THREE.MeshStandardMaterial({ color, roughness: 0.62, metalness: 0.14, ...opts })
+      new THREE.MeshStandardMaterial({
+        color,
+        roughness: 0.62,
+        metalness: 0.14,
+        envMapIntensity: 1.5,
+        ...opts,
+      })
+
+    /* The machine is read by luminance, not hue: near-black running
+       gear, graphite structure, brushed-silver bodywork. Body panels
+       are deliberately kept off the brightest step so the specular
+       highlights still have somewhere to go. */
     return {
-      graphite: make(C.graphite, { roughness: 0.5, metalness: 0.24 }),
-      graphiteDark: make('#1a1c1e', { roughness: 0.66, metalness: 0.26 }),
-      orange: make(C.orange, { roughness: 0.46, metalness: 0.16 }),
-      orangeDeep: make(C.orangeDeep, { roughness: 0.5 }),
-      bronze: make(C.bronze, { roughness: 0.38, metalness: 0.55 }),
-      bronzeDark: make(C.bronzeDark, { roughness: 0.42, metalness: 0.55 }),
-      steel: make(C.steel, { roughness: 0.3, metalness: 0.7 }),
-      rubber: make(C.rubber, { roughness: 0.9, metalness: 0.05 }),
-      offwhite: make(C.offwhite, { roughness: 0.5, metalness: 0.1 }),
-      glass: make('#20323a', { roughness: 0.14, metalness: 0.5, opacity: 0.82, transparent: true }),
-      beacon: new THREE.MeshBasicMaterial({ color: C.orange }),
+      graphite: make(C.graphite2, { roughness: 0.48, metalness: 0.3 }),
+      graphiteDark: make(C.black, { roughness: 0.68, metalness: 0.22 }),
+      // main bodywork — polished, the way the logo faces are
+      body: make(C.platinum, { roughness: 0.22, metalness: 0.55, envMapIntensity: 2.1 }),
+      bodySide: make(C.silver, { roughness: 0.3, metalness: 0.5, envMapIntensity: 1.8 }),
+      // boom and arm, one step down so they separate from the house
+      arm: make(C.steelLight, { roughness: 0.28, metalness: 0.58, envMapIntensity: 1.8 }),
+      armDark: make(C.steelDark, { roughness: 0.42, metalness: 0.5, envMapIntensity: 1.6 }),
+      steel: make(C.steel, { roughness: 0.3, metalness: 0.6, envMapIntensity: 1.7 }),
+      rubber: make(C.rubber, { roughness: 0.92, metalness: 0.04 }),
+      offwhite: make(C.platinum, { roughness: 0.42, metalness: 0.2 }),
+      glass: make('#1b2429', { roughness: 0.1, metalness: 0.6, opacity: 0.8, transparent: true }),
+      beacon: new THREE.MeshBasicMaterial({ color: C.specular }),
     }
   }, [])
 
@@ -246,11 +262,11 @@ export default function ConstructionVehicle({ quality = 'high' }) {
 
       <group ref={houseRef} position={[0, 0.5, 0]}>
         {/* main house */}
-        <mesh position={[-0.12, 0.2, 0]} material={materials.orange}>
+        <mesh position={[-0.12, 0.2, 0]} material={materials.body}>
           <boxGeometry args={[1.02, 0.4, 0.68]} />
         </mesh>
 
-        {/* graphite side panel keeps the orange from dominating */}
+        {/* darker side panel breaks up the bright flank */}
         <mesh position={[-0.12, 0.2, 0.345]} material={materials.graphite}>
           <boxGeometry args={[0.68, 0.28, 0.012]} />
         </mesh>
@@ -259,12 +275,12 @@ export default function ConstructionVehicle({ quality = 'high' }) {
         </mesh>
 
         {/* counterweight */}
-        <mesh position={[-0.62, 0.18, 0]} material={materials.graphite}>
+        <mesh position={[-0.62, 0.18, 0]} material={materials.steel}>
           <boxGeometry args={[0.24, 0.34, 0.62]} />
         </mesh>
 
         {/* operator cab */}
-        <mesh position={[0.28, 0.3, 0.15]} material={materials.graphite}>
+        <mesh position={[0.28, 0.3, 0.15]} material={materials.bodySide}>
           <boxGeometry args={[0.44, 0.56, 0.42]} />
         </mesh>
         <mesh position={[0.5, 0.34, 0.15]} material={materials.glass}>
@@ -274,8 +290,8 @@ export default function ConstructionVehicle({ quality = 'high' }) {
           <boxGeometry args={[0.34, 0.4, 0.02]} />
         </mesh>
 
-        {/* bronze trim line */}
-        <mesh position={[-0.12, 0.03, 0]} material={materials.bronze}>
+        {/* steel trim line */}
+        <mesh position={[-0.12, 0.03, 0]} material={materials.steel}>
           <boxGeometry args={[1.03, 0.026, 0.69]} />
         </mesh>
 
@@ -294,7 +310,7 @@ export default function ConstructionVehicle({ quality = 'high' }) {
         {quality !== 'low' && (
           <>
             {/* handrail */}
-            <mesh position={[-0.12, 0.44, 0.3]} rotation={[0, 0, Math.PI / 2]} material={materials.bronze}>
+            <mesh position={[-0.12, 0.44, 0.3]} rotation={[0, 0, Math.PI / 2]} material={materials.arm}>
               <cylinderGeometry args={[0.012, 0.012, 0.6, 6]} />
             </mesh>
             {/* work light */}

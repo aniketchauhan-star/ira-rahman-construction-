@@ -6,13 +6,13 @@
 export default function Lights({ shadows = false, intensity = 1 }) {
   return (
     <>
-      <ambientLight intensity={0.55 * intensity} color="#e9e3d6" />
+      <ambientLight intensity={0.55 * intensity} color="#dfe4ea" />
 
       {/* Warm directional sun */}
       <directionalLight
         position={[6, 9, 5]}
         intensity={1.45 * intensity}
-        color="#ffe9c9"
+        color="#f4f7fb"
         castShadow={shadows}
         shadow-mapSize={[1024, 1024]}
         shadow-camera-left={-12}
@@ -26,10 +26,10 @@ export default function Lights({ shadows = false, intensity = 1 }) {
       <directionalLight position={[-7, 5, -6]} intensity={0.42 * intensity} color="#c9d3da" />
 
       {/* Low warm bounce off the ground */}
-      <hemisphereLight args={['#f2e6cf', '#2a2724', 0.5 * intensity]} />
+      <hemisphereLight args={['#e8edf3', '#1a1d21', 0.5 * intensity]} />
 
-      {/* Subtle construction-orange rim */}
-      <pointLight position={[-2.4, 1.2, 2.6]} intensity={2.2 * intensity} distance={7} color="#e86a00" />
+      {/* Cool steel rim that picks out the chrome bodywork */}
+      <pointLight position={[-2.4, 1.2, 2.6]} intensity={2.0 * intensity} distance={7} color="#cfd6de" />
     </>
   )
 }

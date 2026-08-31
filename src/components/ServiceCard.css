@@ -36,10 +36,23 @@
   top: 0;
   width: 2px;
   height: 100%;
-  background: var(--orange);
+  background: var(--accent);
   transform: scaleY(0);
   transform-origin: top center;
   transition: transform var(--t-ui-slow) var(--ease-out);
+}
+
+/* The panel inverts to graphite on hover, so its accent has to invert
+   with it — otherwise the drawn edge is dark-on-dark. */
+.svc:hover,
+.svc:focus-visible,
+.svc:active {
+  --accent: var(--platinum);
+  --accent-strong: var(--specular);
+  --accent-2: var(--steel-light);
+  --on-accent: var(--black);
+  --accent-rgb: 238, 241, 245;
+  --accent-2-rgb: 154, 160, 168;
 }
 
 .svc:hover,
@@ -53,7 +66,7 @@
 
 .svc:hover::after,
 .svc:focus-visible::after {
-  background: #2b2e31;
+  background: var(--graphite-2);
 }
 
 .svc:hover .svc__edge,
@@ -76,20 +89,20 @@
 
 .svc:hover .svc__icon,
 .svc:focus-visible .svc__icon {
-  color: var(--orange);
+  color: var(--accent);
   transform: translateY(-3px) rotate(-4deg);
 }
 
 .svc__num {
   font-size: clamp(1.6rem, 2.4vw, 2.1rem);
   line-height: 1;
-  color: rgba(32, 34, 36, 0.16);
+  color: rgba(20, 23, 26, 0.16);
   transition: color var(--t-ui-slow) var(--ease-out);
 }
 
 .svc:hover .svc__num,
 .svc:focus-visible .svc__num {
-  color: rgba(184, 138, 68, 0.7);
+  color: rgba(var(--accent-2-rgb), 0.7);
 }
 
 .svc__title {
@@ -113,13 +126,13 @@
 .svc__arrow {
   margin-top: auto;
   padding-top: 14px;
-  color: var(--concrete);
+  color: var(--steel);
   transition: color var(--t-ui) var(--ease-out), transform var(--t-ui) var(--ease-out);
 }
 
 .svc:hover .svc__arrow,
 .svc:focus-visible .svc__arrow {
-  color: var(--orange);
+  color: var(--accent);
   transform: translateX(6px);
 }
 
@@ -207,14 +220,14 @@
   }
 
   .svc:active .svc__icon {
-    color: var(--orange);
+    color: var(--accent);
   }
 
   .svc:active .svc__num {
-    color: rgba(184, 138, 68, 0.7);
+    color: rgba(var(--accent-2-rgb), 0.7);
   }
 
   .svc:active::after {
-    background: #2b2e31;
+    background: var(--graphite-2);
   }
 }

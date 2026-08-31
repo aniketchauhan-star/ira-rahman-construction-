@@ -22,17 +22,17 @@
 /* No-WebGL fallback: a quiet industrial gradient with a drafting grid. */
 .hero-scene--fallback {
   background:
-    radial-gradient(120% 80% at 78% 30%, rgba(184, 138, 68, 0.16), transparent 60%),
-    radial-gradient(90% 70% at 92% 70%, rgba(232, 106, 0, 0.14), transparent 62%),
-    linear-gradient(160deg, #16191b 0%, #111315 100%);
+    radial-gradient(120% 80% at 78% 30%, rgba(var(--accent-2-rgb), 0.16), transparent 60%),
+    radial-gradient(90% 70% at 92% 70%, rgba(var(--accent-rgb), 0.14), transparent 62%),
+    linear-gradient(160deg, #14171a 0%, #0a0b0d 100%);
 }
 
 .hero-scene--fallback::after {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(rgba(247, 244, 237, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(247, 244, 237, 0.03) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(238, 241, 245, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(238, 241, 245, 0.03) 1px, transparent 1px);
   background-size: 68px 68px;
   mask-image: linear-gradient(to left, #000, transparent 62%);
   -webkit-mask-image: linear-gradient(to left, #000, transparent 62%);

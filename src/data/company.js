@@ -7,11 +7,23 @@
  */
 
 export const company = {
-  name: 'IRHA RAHMAN',
-  fullName: 'IRHA RAHMAN CONSTRUCTION COMPANY',
-  shortName: 'IRHA RAHMAN',
+  name: 'IRHA',
+  fullName: 'IRHA CONSTRUCTION COMPANY',
+  shortName: 'IRHA Construction',
+  monogram: 'I & I',
   tagline: 'Building stronger foundations for tomorrow.',
-  logo: '/assets/logo/irha-rahman-logo.png',
+
+  /* Logo artwork.
+     `logo`     — the full lockup, including the wordmark.
+     `logoMark` — the buildings cropped out of that lockup, for use
+                  anywhere too small for the wordmark to be legible.
+     Both are chrome on a transparent background, so they need a
+     dark ground; the Logo component handles that. Ratios are stored
+     here so the markup can reserve space without a layout shift. */
+  logo: '/assets/logo/irha-construction-logo.png',
+  logoRatio: '1536 / 1024',
+  logoMark: '/assets/logo/irha-construction-mark-sm.png',
+  logoMarkRatio: '1482 / 640',
 
   // --- Contact -------------------------------------------------
   // Replace the placeholders below with your real details.

@@ -47,12 +47,12 @@ export default function StaticRoad({ hidden = false, reason = 'no-webgl' }) {
           <circle cx="48" cy="44" r="4" fill="#5b6064" />
           {/* body */}
           <rect x="10" y="22" width="40" height="15" fill="currentColor" />
-          <rect x="10" y="35" width="40" height="3" fill="#b88a44" />
-          <rect x="34" y="10" width="16" height="14" fill="#202224" />
+          <rect x="10" y="35" width="40" height="3" fill="#c4c9d1" />
+          <rect x="34" y="10" width="16" height="14" fill="#14171a" />
           <rect x="46" y="13" width="3" height="9" fill="#33474f" />
           {/* arm */}
-          <path d="M50 24 76 14" stroke="#b88a44" strokeWidth="5" />
-          <path d="M76 14 84 26" stroke="#b88a44" strokeWidth="4" />
+          <path d="M50 24 76 14" stroke="#c4c9d1" strokeWidth="5" />
+          <path d="M76 14 84 26" stroke="#c4c9d1" strokeWidth="4" />
           <path d="M80 24h9v8h-9z" fill="#1a1c1e" />
         </svg>
       </div>

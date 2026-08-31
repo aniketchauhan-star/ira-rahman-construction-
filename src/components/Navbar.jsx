@@ -63,7 +63,7 @@ export default function Navbar({ active = 'home' }) {
     <header className={`nav ${scrolled ? 'nav--solid' : ''} ${open ? 'nav--open' : ''}`}>
       <div className="nav__inner shell">
         <a href="#home" className="nav__brand" onClick={(e) => go(e, 'home')} data-cursor="hover">
-          <Logo size={44} surface="plate" withWordmark />
+          <Logo height={30} variant="mark" withWordmark />
         </a>
 
         <nav className="nav__links" aria-label="Primary">

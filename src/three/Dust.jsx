@@ -31,7 +31,7 @@ export default function Dust({ quality = 'high' }) {
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
 
     const material = new THREE.PointsMaterial({
-      color: '#c8bda6',
+      color: '#b9c0c8',
       size: 0.085,
       sizeAttenuation: true,
       transparent: true,

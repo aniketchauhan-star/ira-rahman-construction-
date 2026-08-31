@@ -82,7 +82,7 @@ export default function Hero({ ready = true }) {
         <span className="hero__rule" aria-hidden="true" />
 
         <p className="hero__copy lead" data-hero-in>
-          From construction and civil infrastructure to materials and project execution, IRHA RAHMAN
+          From construction and civil infrastructure to materials and project execution, IRHA
           Construction Company builds with strength, precision and reliability.
         </p>
 

@@ -23,7 +23,7 @@
   width: min(1180px, 100%);
   max-height: min(88vh, 800px);
   background: var(--graphite);
-  border: 1px solid rgba(184, 138, 68, 0.26);
+  border: 1px solid rgba(var(--accent-2-rgb), 0.26);
   border-radius: 2px;
   overflow: hidden;
   animation: pmIn 420ms var(--ease-out) both;
@@ -52,15 +52,15 @@
   width: 42px;
   height: 42px;
   color: var(--offwhite);
-  background: rgba(17, 19, 21, 0.72);
-  border: 1px solid rgba(247, 244, 237, 0.2);
+  background: rgba(10, 11, 13, 0.72);
+  border: 1px solid rgba(238, 241, 245, 0.2);
   border-radius: 2px;
   transition: background-color var(--t-ui) var(--ease-out), transform var(--t-ui) var(--ease-out);
 }
 
 .pmodal__close:hover {
-  background: var(--orange);
-  border-color: var(--orange);
+  background: var(--accent);
+  border-color: var(--accent);
   transform: rotate(90deg);
 }
 
@@ -84,7 +84,7 @@
   padding: clamp(26px, 3vw, 46px);
   overflow-y: auto;
   color: var(--offwhite);
-  border-left: 1px solid rgba(247, 244, 237, 0.1);
+  border-left: 1px solid rgba(238, 241, 245, 0.1);
 }
 
 .pmodal__title {
@@ -103,7 +103,7 @@
   gap: 12px;
   margin: 8px 0 0;
   padding-top: 20px;
-  border-top: 1px solid rgba(247, 244, 237, 0.1);
+  border-top: 1px solid rgba(238, 241, 245, 0.1);
 }
 
 .pmodal__facts div {
@@ -117,7 +117,7 @@
   font-size: 0.74rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--concrete);
+  color: var(--steel);
 }
 
 .pmodal__facts dd {
@@ -134,7 +134,7 @@
   gap: 12px;
   margin-top: auto;
   padding-top: 24px;
-  border-top: 1px solid rgba(247, 244, 237, 0.1);
+  border-top: 1px solid rgba(238, 241, 245, 0.1);
 }
 
 .pmodal__nav button {
@@ -152,24 +152,24 @@
 }
 
 .pmodal__nav button:hover {
-  color: var(--orange);
+  color: var(--accent);
 }
 
 .pmodal__count {
   font-size: 0.78rem;
   letter-spacing: 0.14em;
-  color: var(--bronze);
+  color: var(--accent-2);
 }
 
 @media (max-width: 900px) {
   .pmodal__dialog {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     grid-template-rows: minmax(180px, 42vh) auto;
     max-height: 92vh;
   }
   .pmodal__body {
     border-left: 0;
-    border-top: 1px solid rgba(247, 244, 237, 0.1);
+    border-top: 1px solid rgba(238, 241, 245, 0.1);
   }
   .pmodal__media {
     min-height: 0;
