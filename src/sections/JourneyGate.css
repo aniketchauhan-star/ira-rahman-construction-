@@ -63,7 +63,7 @@
 .gate__title {
   display: flex;
   flex-direction: column;
-  color: var(--offwhite);
+  color: var(--silver);
 }
 
 .gate__line {

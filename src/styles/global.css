@@ -63,6 +63,12 @@
   --accent-rgb: 238, 241, 245;
   --accent-2-rgb: 154, 160, 168;
 
+  /* A highlighted word inside a heading. It needs its own value:
+     --accent sits within a shade or two of the heading colour, so a
+     word set in it is invisible. Headings that carry one are dimmed
+     to --silver, and the word steps up to the brightest tone. */
+  --accent-type: var(--specular);
+
   /* ---- Type ---- */
   --font-head: 'Barlow Condensed', 'Oswald', 'Arial Narrow', sans-serif;
   --font-body: 'Inter', 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -97,6 +103,9 @@
   --on-accent: var(--platinum);
   --accent-rgb: 20, 23, 26;
   --accent-2-rgb: 114, 118, 126;
+  /* No darker tone exists below the heading colour on light ground,
+     so the highlighted word steps down to steel instead. */
+  --accent-type: var(--steel);
 }
 
 /* Dark islands inside a light section (project tiles, inverted
@@ -108,6 +117,7 @@
   --on-accent: var(--black);
   --accent-rgb: 238, 241, 245;
   --accent-2-rgb: 154, 160, 168;
+  --accent-type: var(--specular);
 }
 
 /* ---------- Reset ---------- */
@@ -243,7 +253,9 @@ figure {
 }
 
 .h-display {
-  font-size: clamp(3.1rem, 8vw, 8rem);
+  /* Sized for the four-line hero headline: at 8vw a line of this
+     length filled most of the viewport before any other content. */
+  font-size: clamp(2.1rem, 5vw, 4.8rem);
 }
 
 .h1 {
@@ -281,7 +293,13 @@ figure {
 }
 
 .accent {
-  color: var(--accent);
+  color: var(--accent-type);
+}
+
+/* Headings containing a highlighted word sit one step down, so the
+   word itself has somewhere brighter to go. */
+.h-has-accent {
+  color: var(--silver);
 }
 
 .mono-num {
@@ -408,7 +426,7 @@ figure {
   }
 
   .h-display {
-    font-size: clamp(2.7rem, 11.5vw, 3.6rem);
+    font-size: clamp(1.85rem, 9.2vw, 2.6rem);
   }
 
   .h1 {

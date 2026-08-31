@@ -48,7 +48,12 @@ export const content = {
   hero: {
     /* Shown separated by dots. Add or remove items freely. */
     eyebrow: ['Engineering', 'Construction', 'Infrastructure'],
-    heading: ['Building [stronger]', 'Foundations for', 'Tomorrow.'],
+    heading: [
+      'We do not just',
+      'build structures.',
+      'We construct the',
+      '[pride] of our nation.',
+    ],
     copy: 'From construction and civil infrastructure to materials and project execution, IRHA Construction Company builds with strength, precision and reliability.',
     primaryCta: 'Explore our work',
     secondaryCta: 'Get a quote',

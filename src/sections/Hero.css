@@ -46,8 +46,10 @@
 
 .hero__title {
   margin-top: 26px;
-  max-width: 16ch;
-  color: var(--offwhite);
+  /* Wide enough for the longest authored line so the array's own
+     breaks are the only breaks. */
+  max-width: 22ch;
+  color: var(--silver);
   text-wrap: balance;
 }
 
@@ -192,11 +194,11 @@
 
   /* The desktop measure limit (16ch) squeezed the headline into a
      narrow column and broke it into five ragged lines. Here the full
-     content width is the measure, and the size is set so the three
-     authored lines each hold. */
+     content width is the measure, and the size is set so each of the
+     four authored lines holds without re-wrapping. */
   .hero__title {
     max-width: none;
-    font-size: clamp(2.4rem, 12vw, 3.1rem);
+    font-size: clamp(1.7rem, 8.2vw, 2.4rem);
   }
 
   .hero__rule {
@@ -270,6 +272,6 @@
 
 @media (max-width: 344px) {
   .hero__title {
-    font-size: 11.2vw;
+    font-size: 7.7vw;
   }
 }
